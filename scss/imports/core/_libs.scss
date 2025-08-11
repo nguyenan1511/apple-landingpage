@@ -1,0 +1,450 @@
+html.has-scroll-smooth {
+    overflow: hidden;
+}
+
+html.has-scroll-dragging {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.has-scroll-smooth body {
+    overflow: hidden;
+}
+
+.scrollmain {
+    will-change: transform;
+}
+[data-scroll] {
+    will-change: transform;
+}
+.has-scroll-smooth [data-scroll-container] {
+    min-height: 100vh;
+}
+
+[data-scroll-direction="horizontal"] [data-scroll-container] {
+    height: 100vh;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+[data-scroll-direction="horizontal"] [data-scroll-section] {
+    display: inline-block;
+    vertical-align: top;
+    white-space: nowrap;
+    height: 100%;
+}
+
+.c-scrollbar {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 7px;
+    height: 100%;
+    transform-origin: center right;
+    transition: transform 0.3s, opacity 0.3s;
+    opacity: 0;
+    z-index: 500;
+}
+.c-scrollbar:hover {
+    transform: scaleX(1.45);
+}
+.c-scrollbar:hover,
+.has-scroll-scrolling .c-scrollbar,
+.has-scroll-dragging .c-scrollbar {
+    opacity: 1;
+}
+[data-scroll-direction="horizontal"] .c-scrollbar {
+    width: 100%;
+    height: 10px;
+    top: auto;
+    bottom: 0;
+    transform: scaleY(1);
+}
+[data-scroll-direction="horizontal"] .c-scrollbar:hover {
+    transform: scaleY(1.3);
+}
+
+.c-scrollbar_thumb {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: $main-cl;
+    opacity: 1;
+    width: 5px;
+    border-radius: 15px;
+    margin: 2px;
+    cursor: -webkit-grab;
+    cursor: grab;
+}
+.has-scroll-dragging .c-scrollbar_thumb {
+    cursor: -webkit-grabbing;
+    cursor: grabbing;
+}
+[data-scroll-direction="horizontal"] .c-scrollbar_thumb {
+    right: auto;
+    bottom: 0;
+}
+
+.flickity-enabled {
+    position: relative;
+}
+
+.flickity-enabled:focus {
+    outline: none;
+}
+
+.flickity-viewport {
+    overflow: hidden;
+    position: relative;
+    height: 100%;
+    will-change: transform;
+}
+
+.flickity-slider {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    will-change: transform;
+}
+/* draggable */
+.flickity-enabled.is-draggable {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.flickity-enabled.is-draggable .flickity-viewport {
+    cursor: move;
+    cursor: -webkit-grab;
+    cursor: grab;
+}
+
+.flickity-enabled.is-draggable .flickity-viewport.is-pointer-down {
+    cursor: -webkit-grabbing;
+    cursor: grabbing;
+}
+
+.flickity-page-dots {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    left: 50%;
+    bottom: 30px;
+    @include transform(translateX(-50%));
+    .dot {
+        @include size(6px);
+        border-radius: 50%;
+        margin: 0 6px;
+        cursor: pointer;
+        background-color: rgba($color: #fff, $alpha: 0.5);
+        @include transition($t);
+        &.is-selected {
+            width: 24px;
+            border-radius: 5px;
+            background: $white-cl;
+        }
+    }
+}
+
+.flickity-prev-next-button {
+    @include size(var(--height-button));
+    border-radius: 50%;
+    background: $main-cl;
+    border: 0;
+    background-image: url(../img/ic_arrow_black.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: 50%;
+    @include transform(translateY(-50%));
+    right: calc(var(--height-button) / 2 * -1);
+    cursor: pointer;
+    svg {
+        display: none;
+    }
+    &.previous {
+        left: calc(var(--height-button) / 2 * -1);
+        right: initial;
+        @include transform(rotate(180deg));
+    }
+}
+/* flickity-fade */
+
+.flickity-enabled.is-fade .flickity-slider > * {
+    pointer-events: none;
+    z-index: 0;
+}
+
+.flickity-enabled.is-fade .flickity-slider > .is-selected {
+    pointer-events: auto;
+    z-index: 1;
+}
+
+.animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+.animated.hinge {
+    -webkit-animation-duration: 2s;
+    animation-duration: 2s;
+}
+
+@-webkit-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.fadeIn {
+    -webkit-animation-name: fadeIn;
+    animation-name: fadeIn;
+}
+
+@-webkit-keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(-20px);
+        transform: translateY(-20px);
+    }
+
+    100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(-20px);
+        -ms-transform: translateY(-20px);
+        transform: translateY(-20px);
+    }
+
+    100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+        -ms-transform: translateY(0);
+        transform: translateY(0);
+    }
+}
+
+.fadeInDown {
+    -webkit-animation-name: fadeInDown;
+    animation-name: fadeInDown;
+}
+
+@-webkit-keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(20px);
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(20px);
+        -ms-transform: translateY(20px);
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+        -ms-transform: translateY(0);
+        transform: translateY(0);
+    }
+}
+
+.fadeInUp {
+    -webkit-animation-name: fadeInUp;
+    animation-name: fadeInUp;
+}
+.compositions-nav {
+    position: sticky;
+    top: 3rem;
+    align-self: start;
+}
+/* Flickity fullscreen v1.0.1
+------------------------- */
+
+.flickity-enabled.is-fullscreen {
+    width: 100%;
+    height: 100%;
+}
+
+.flickity-enabled.is-fullscreen .carousel-cell {
+    height: 100%;
+}
+
+.flickity-enabled.is-fullscreen .flickity-page-dots .dot {
+    background: white;
+}
+
+/* prevent page scrolling when flickity is fullscreen */
+.sliderfullscreen {
+    @include size(100vw, 100vh);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 800;
+    opacity: 0;
+    pointer-events: none;
+    background: $black-cl;
+    .container {
+        width: 100%;
+        max-width: initial;
+        padding: 0;
+    }
+}
+html.is-flickity-fullscreen {
+    overflow: hidden;
+    .sliderfullscreen {
+        opacity: 1;
+        pointer-events: auto;
+        .container {
+            height: 100%;
+            .item__info {
+                display: none;
+            }
+        }
+        .btncontrolsgroup {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            padding: 0 40px;
+            width: 100%;
+        }
+        .slider {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            .item {
+                height: 100%;
+                width: 100%;
+                overflow: hidden;
+                .img-wrapper {
+                    width: 100%;
+                    height: 100%;
+                    position: relative;
+                    img {
+                        height: 100%;
+                        width: 100%;
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        max-width: unset;
+                        object-fit: cover;
+                    }
+                    @include md {
+                        img {
+                            height: auto;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* ---- flickity-fullscreen-button ---- */
+
+.flickity-fullscreen-button {
+    position: absolute;
+    display: block;
+    right: 27px;
+    top: 27px;
+    width: 26px;
+    height: 26px;
+    border-radius: 4px;
+    border: none;
+    background: transparent;
+    background-image: url(../img/bg-fullscreen.svg);
+    background-size: contain;
+    cursor: pointer;
+    @include transform(scale(1));
+    @include transition($t);
+    &:hover {
+        @include transform(scale(0.85));
+        @include transition($t);
+    }
+    @include xs {
+        width: 20px;
+        height: 20px;
+        right: 15px;
+        top: 15px;
+    }
+    svg {
+        display: none;
+    }
+}
+
+.flickity-fullscreen-button-exit {
+    display: none;
+}
+
+.flickity-enabled.is-fullscreen .flickity-fullscreen-button-exit {
+    position: absolute;
+    display: block;
+    right: 30px;
+    top: 30px;
+    width: 26px;
+    height: 26px;
+    border: none;
+    background: transparent;
+    background-image: url(../img/bg-fullscreen-exit.svg);
+    background-size: contain;
+    cursor: pointer;
+    @include xs {
+        width: 20px;
+        height: 20px;
+        right: 15px;
+        top: 15px;
+    }
+    svg {
+        display: none;
+    }
+}
+.flickity-enabled.is-fullscreen .flickity-fullscreen-button-view {
+    display: none;
+}
+
+.flickity-fullscreen-button .flickity-button-icon {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    left: 4px;
+    top: 4px;
+}

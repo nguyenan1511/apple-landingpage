@@ -1,0 +1,502 @@
+// css button, title, icon, elements...
+img {
+	max-width: 100%;
+	height: auto;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+	display: block;
+	outline: 0;
+	object-fit: contain;
+	&.--center {
+		margin: 0 auto;
+		display: block;
+	}
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+	-webkit-box-shadow: 0 0 0 1000px $yellow-cl inset;
+}
+a {
+	text-decoration: none;
+	outline: 0;
+	color: $main-cl;
+	&.--hover-link {
+		@include transition($t);
+		&:hover {
+			opacity: 0.6;
+		}
+	}
+}
+
+strong {
+	font-family: $font-body-b;
+}
+
+.--hidden {
+	display: none;
+}
+
+.d-block {
+	display: block;
+}
+sub {
+	vertical-align: sub;
+	font-size: smaller;
+}
+sup {
+	vertical-align: super;
+	font-size: smaller;
+}
+//================================== HEADING ===========================//
+.heading {
+	display: block;
+	font-family: $font-heading;
+	color: $main-cl;
+	text-transform: capitalize;
+	&.--h1 {
+		font-size: var(--fs100);
+		line-height: 120%;
+		span {
+			color: $main-cl;
+		}
+	}
+	&.--h2 {
+		font-size: var(--fs80);
+		line-height: 125%;
+		span {
+			color: $main-cl;
+		}
+	}
+	&.--h3 {
+		font-size: var(--fs48);
+		line-height: 130%;
+		span {
+			color: $main-cl;
+		}
+	}
+	&.--h4 {
+		font-size: var(--fs40);
+		line-height: 135%;
+	}
+	&.--h5 {
+		font-size: var(--fs24);
+		line-height: 145%;
+	}
+	&.--white-cl {
+		color: $white-cl;
+	}
+	&.--up {
+		text-transform: uppercase;
+	}
+	&.--mb {
+		margin-bottom: 40px;
+	}
+	&.--mb20 {
+		margin-bottom: 20px;
+	}
+	&.--center {
+		text-align: center;
+	}
+	&.--t24 {
+		font-size: var(--fs24);
+	}
+	&.--t32 {
+		font-size: var(--fs32);
+	}
+	&.--t20 {
+		font-size: var(--fs20);
+	}
+	&.--t16 {
+		font-size: var(--fs16);
+	}
+
+	@include sm {
+		br {
+			display: none;
+		}
+		&.--mb20 {
+			margin-bottom: 16px;
+		}
+	}
+	@include xs {
+		&.--mb {
+			margin-bottom: 25px;
+		}
+	}
+}
+
+.bodytext {
+	line-height: 140%;
+	&.--t24 {
+		font-size: var(--fs24);
+	}
+	&.--t20 {
+		font-size: var(--fs20);
+	}
+	&.--t18 {
+		font-size: var(--fs18);
+	}
+	&.--t32 {
+		font-size: var(--fs32);
+	}
+	&.--t16 {
+		font-size: var(--fs16);
+	}
+	&.--t14 {
+		font-size: var(--fs14);
+	}
+	&.--up {
+		text-transform: uppercase;
+	}
+	&.--white-cl {
+		color: $white-cl;
+	}
+	&.--gray-cl {
+		color: $gray-cl;
+	}
+	&.--bold {
+		font-family: $font-body-b;
+	}
+	&.--sub-tt {
+		color: $main-cl;
+	}
+	@include xs {
+	}
+}
+
+.subtitle {
+	font-size: var(--fs16);
+	line-height: 140%;
+	color: $main-cl;
+	text-transform: uppercase;
+	font-family: $font-body-b;
+	margin-bottom: 8px;
+	&.--big {
+		font-size: var(--fs20);
+	}
+}
+.subTtBanner {
+	font-size: var(--fs24);
+	line-height: 140%;
+	color: $main-cl;
+	text-transform: uppercase;
+	font-family: $font-heading;
+	&.--center {
+		text-align: center;
+	}
+}
+
+//==================== TEXT COLOR ===================//
+.--text-white-cl {
+	color: $white-cl;
+}
+.--text-black-cl {
+	color: $black-cl;
+}
+.--text-main-cl {
+	color: $main-cl;
+}
+.--text-gray-cl {
+	color: $gray-cl;
+}
+/////////////////////////// BUTTON //////////////////////////
+
+.btnmain {
+	width: max-content;
+	min-width: 240px;
+	height: 52px;
+	background: $main-cl;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0 34px;
+	color: $white-cl;
+	white-space: nowrap;
+	border: 1px solid $main-cl;
+	cursor: pointer;
+	position: relative;
+	@include transition($t transform);
+	&:after {
+		content: "";
+		@include size(100%);
+		position: absolute;
+		z-index: -1;
+		border: 1px solid $main-cl;
+		@include transform(translate(0px, 0px));
+		@include transition($t $cubic transform);
+	}
+	&.--second {
+		background: $yellow-cl;
+		color: $main-cl;
+	}
+	&.--center {
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;
+	}
+	&.--loading {
+		position: relative;
+		pointer-events: none;
+		span {
+			opacity: 0;
+		}
+		&::before {
+			content: "";
+			@include size(36px);
+			background: url(../img/loader.svg) no-repeat center;
+			@include mid;
+			z-index: 10;
+			opacity: 1;
+			@include transition(0.2s);
+		}
+	}
+	&:hover {
+		&:after {
+			@include transform(translate(8px, 8px));
+		}
+	}
+	&.--white {
+		background: $white-cl;
+		color: $main-cl;
+		&:after {
+			border: 1px solid $white-cl;
+			z-index: 2;
+		}
+	}
+	@include md {
+		min-width: 180px;
+	}
+	@include xs {
+		min-width: 160px;
+		height: 40px;
+		padding: 0 20px;
+	}
+}
+
+.btngroup {
+	display: flex;
+	max-width: fit-content;
+	margin-top: 38px;
+	.btnmain {
+		&:not(:last-child) {
+			margin-right: calc(var(--gap) / 2);
+		}
+	}
+	&.--center {
+		margin: auto;
+	}
+	&.--left {
+		margin-left: 0;
+	}
+	@include sm {
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 30px;
+		.btnmain {
+			width: 180px;
+		}
+	}
+	@include xs {
+		.btnmain {
+			width: 160px;
+		}
+	}
+	@include xxs {
+		flex-direction: column;
+		.btnmain {
+			&:not(:last-child) {
+				margin-bottom: 15px;
+			}
+		}
+	}
+}
+
+.btncontrols {
+	@include size(60px);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	border: 1px solid $white-cl;
+	border-radius: 50%;
+	cursor: pointer;
+	pointer-events: auto;
+	overflow: hidden;
+	@include transition(0.5s $cubic);
+	&.--small {
+		@include size(43px);
+		svg {
+			width: 16px;
+		}
+	}
+	svg {
+		width: 20px;
+		position: relative;
+		z-index: 2;
+	}
+	svg * {
+		@include transition(0.5s $cubic);
+	}
+	&.--prev {
+		@include transform(rotate(180deg));
+	}
+	&:after {
+		content: "";
+		@include size(100%);
+		background: $main-cl;
+		border-radius: 50%;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		@include transform(translate(-50%, -50%) scale(0));
+		@include transition(0.5s $cubic);
+		z-index: 1;
+	}
+	&.--main-cl {
+		border: 1px solid $main-cl;
+	}
+	&:hover {
+		border: 1px solid $main-cl;
+		&:after {
+			@include transform(translate(-50%, -50%) scale(1));
+		}
+		&.--main-cl {
+			svg * {
+				stroke: $white-cl;
+			}
+		}
+	}
+}
+
+.--stagger2 {
+	will-change: transform;
+}
+
+/////////////////////////// Block Filter //////////////////////////
+.ttfilter {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	.--h4 {
+		font-size: var(--fs28);
+		white-space: nowrap;
+		cursor: pointer;
+		margin-bottom: 10px;
+		@include transition($t $cubic);
+		&:after {
+			content: "/";
+			color: $white-cl;
+			margin: 0 40px;
+		}
+		&:last-child {
+			&:after {
+				display: none;
+			}
+		}
+		&:hover {
+			color: $main-cl;
+		}
+	}
+	.active {
+		color: $main-cl;
+	}
+
+	&.--cl-black {
+		.--h4 {
+			&:after {
+				color: $black-cl;
+			}
+		}
+	}
+	@include lg {
+		.--h4 {
+			font-size: var(--fs24);
+			&:after {
+				margin: 0 14px;
+			}
+		}
+	}
+
+	@include maxW(1024px) {
+		.--h4 {
+			font-size: var(--fs20);
+			&:after {
+				margin: 0 10px;
+			}
+		}
+	}
+
+	@include maxW(600px) {
+		.--h4 {
+			margin-bottom: 10px;
+			font-size: var(--fs18);
+		}
+	}
+}
+
+.scrolldown {
+	--distance: 23px;
+	position: absolute;
+	z-index: 100;
+	bottom: 50px;
+	right: var(--gap);
+	&.--center {
+		right: 50%;
+		transform: translateX(50%);
+	}
+	@include keyframes(bottomtop) {
+		0% {
+			@include transform(translateY(0px));
+		}
+		50% {
+			@include transform(translateY(calc(var(--distance) * -1)));
+		}
+		100% {
+			@include transform(translateY(0px));
+		}
+	}
+	@include keyframes(topbottom) {
+		0% {
+			@include transform(translateY(0px));
+		}
+		50% {
+			@include transform(translateY(var(--distance)));
+		}
+		100% {
+			@include transform(translateY(0px));
+		}
+	}
+	svg {
+		.circle1 {
+			@include animation(bottomtop 3s infinite);
+		}
+		.circle2 {
+			@include animation(topbottom 3s 0.4s infinite);
+		}
+	}
+	@include lg {
+		bottom: 40px;
+		svg {
+			width: 120px;
+		}
+	}
+	@include md {
+		display: none;
+	}
+}
+
+/* <-------  Animation Loading  -------> */
+@keyframes loader-1-outter {
+	0% {
+		transform: translate(-50%, -50%) rotate(0deg);
+	}
+	100% {
+		transform: translate(-50%, -50%) rotate(360deg);
+	}
+}

@@ -1,0 +1,60 @@
+@font-face {
+	font-family: "fm";
+	src: url("../fonts/Fahkwang-Medium.woff2") format("woff2"),
+		url("../fonts/Fahkwang-Medium.woff") format("woff");
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: "f700";
+	src: url("../fonts/Fahkwang-Bold.woff2") format("woff2"),
+		url("../fonts/Fahkwang-Bold.woff") format("woff");
+	font-weight: bold;
+	font-style: normal;
+	font-display: fallback;
+}
+
+@font-face {
+	font-family: "fr";
+	src: url("../fonts/Fahkwang-Regular.woff2") format("woff2"),
+		url("../fonts/Fahkwang-Regular.woff") format("woff");
+	font-weight: normal;
+	font-style: normal;
+	font-display: fallback;
+}
+
+@font-face {
+	font-family: "f600";
+	src: url("../fonts/Fahkwang-SemiBold.woff2") format("woff2"),
+		url("../fonts/Fahkwang-SemiBold.woff") format("woff");
+	font-weight: 600;
+	font-style: normal;
+	font-display: fallback;
+}
+
+@font-face {
+	font-family: "f300";
+	src: url("../fonts/Fahkwang-Light.woff2") format("woff2"),
+		url("../fonts/Fahkwang-Light.woff") format("woff");
+	font-weight: 300;
+	font-style: normal;
+	font-display: fallback;
+}
+
+@font-face {
+	font-family: "ar";
+	src: url("../fonts/Archivo-Regular.woff2") format("woff2"),
+		url("../fonts/Archivo-Regular.woff") format("woff");
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: "ab";
+	src: url("../fonts/Archivo-Bold.woff2") format("woff2"),
+		url("../fonts/Archivo-Bold.woff") format("woff");
+	font-weight: bold;
+	font-style: normal;
+	font-display: swap;
+}

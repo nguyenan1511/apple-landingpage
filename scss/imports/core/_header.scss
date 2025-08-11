@@ -1,0 +1,440 @@
+// Top Header Bar
+.top-header {
+  width: 100%;
+  height: 40px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 220;
+  background: #f5f5f7;
+  color: #1d1d1f;
+  font-size: 12px;
+
+  &__container {
+    height: 100%;
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 22px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; // Align content to the left
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__separator {
+    color: #86868b;
+    margin: 0 8px;
+  }
+
+  &__link {
+    color: #1d1d1f;
+    text-decoration: none;
+    @include transition($t);
+    font-size: 12px;
+    line-height: 1;
+
+    &:hover {
+      text-decoration: underline;
+      color: #06c;
+    }
+  }
+}
+
+// Main Header
+.header {
+  width: 100%;
+  height: 44px;
+  position: fixed;
+  top: 40px; // Account for new top header height
+  left: 0;
+  z-index: 210;
+  background: #ffffff;
+  @include transition(all 0.3s ease);
+
+  &.--bg-scroll {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  }
+
+  &.is-hidden {
+    @include transform(translateY(-100%));
+  }
+
+  .container-fluid {
+    height: 100%;
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1; // Ensure content stays above the blur overlay
+  }
+
+  &__logo {
+    flex: 0 0 auto;
+    a {
+      display: flex;
+      align-items: center;
+      height: 44px;
+      color: #1d1d1f;
+      @include transition($t);
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    svg {
+      width: 14px;
+      height: 44px;
+      display: block;
+    }
+  }
+
+  &__nav {
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: center;
+
+    &-list {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      gap: 0;
+    }
+
+    &-link {
+      display: flex;
+      align-items: center;
+      height: 44px;
+      padding: 0 12px;
+      color: #1d1d1f;
+      font-size: 12px;
+      font-weight: 400;
+      text-decoration: none;
+      @include transition($t);
+
+      &:hover {
+        color: #0066cc;
+      }
+    }
+  }
+
+  &__actions {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 0;
+
+    @media (max-width: 833px) {
+      flex: 1;
+      display: flex;
+      justify-content: space-between;
+      gap: 4px;
+
+      .header__search-btn {
+        margin-left: auto; // Push to the right
+        order: 0;
+      }
+
+      .header__bag-btn {
+        margin-left: 0; // Remove margin from bag button to keep it next to search
+        order: 1;
+      }
+    }
+  }
+
+  &__search-btn,
+  &__bag-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: none;
+    border: none;
+    color: #1d1d1f;
+    cursor: pointer;
+    @include transition($t);
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    svg {
+      width: 15px;
+      height: 44px;
+      display: block;
+    }
+  }
+
+  &__bag-btn svg {
+    width: 14px;
+    height: 44px;
+  }
+
+  // Menu button styles
+  &__menu-btn {
+    display: none; // Hidden by default
+    width: 44px;
+    height: 44px;
+    background: none;
+    border: none;
+    position: relative;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    order: 2; // Move after shopping bag icon
+
+    span {
+      display: block;
+      width: 14px;
+      height: 1px;
+      background: #1d1d1f;
+      position: relative;
+      transition: all 0.3s cubic-bezier(0.4, 0.14, 0.3, 1);
+      transform-origin: center;
+
+      &:first-child {
+        transform: translate(100%, -4px);
+      }
+
+      &:last-child {
+        transform: translate(100%, 4px);
+      }
+    }
+
+    &.active {
+      span {
+        &:first-child {
+          transform: translate(100%, 0.5px) rotate(45deg);
+        }
+
+        &:last-child {
+          transform: translate(100%, -0.5px) rotate(-45deg);
+        }
+      }
+    }
+  }
+
+  // Mobile navigation styles
+  &__mobile-nav {
+    display: none;
+    position: fixed;
+    top: 44px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 44px);
+    z-index: 200;
+    overflow: hidden;
+    visibility: hidden;
+    transition: visibility 0s linear 0.85s;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    // Backdrop with subtle gradient
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.999) 0%,
+        rgba(255, 255, 255, 0.98) 100%
+      );
+      transform: translateY(-100%);
+      transition: transform 0.6s cubic-bezier(0.4, 0.14, 0.3, 1);
+      transition-delay: 0s;
+      will-change: transform;
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+    }
+
+    &.active {
+      visibility: visible;
+      transition-delay: 0s;
+
+      &::before {
+        transform: translateY(0);
+        transition-delay: 0s;
+      }
+
+      .mobile-nav__list li {
+        opacity: 1;
+        transform: translateY(0);
+        filter: none;
+
+        @for $i from 1 through 20 {
+          &:nth-child(#{$i}) {
+            transition-delay: #{0.45 + ($i * 0.035)}s;
+          }
+        }
+      }
+
+      .mobile-nav {
+        transform: translateY(0);
+        opacity: 1;
+        transition-delay: 0.2s;
+      }
+    }
+
+    .mobile-nav {
+      position: relative;
+      padding: 0 16px 40px 16px;
+      height: 100%;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      transform: translateY(-15px);
+      opacity: 0;
+      transition: transform 0.5s cubic-bezier(0.4, 0.14, 0.3, 1),
+        opacity 0.4s ease;
+
+      // Smooth scroll behavior
+      scroll-behavior: smooth;
+      overscroll-behavior-y: none;
+
+      &__list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        perspective: 1000px;
+
+        li {
+          opacity: 0;
+          transform: translateY(15px);
+          transition: opacity 0.35s ease,
+            transform 0.45s cubic-bezier(0.4, 0.14, 0.3, 1), filter 0.3s ease;
+          will-change: transform, opacity;
+          filter: blur(5px);
+          transform-origin: top center;
+
+          // Smooth close animation
+          .header__mobile-nav:not(.active) & {
+            transition: opacity 0.25s ease,
+              transform 0.3s cubic-bezier(0.4, 0.14, 0.3, 1), filter 0.2s ease;
+            transition-delay: 0s !important;
+            transform: translateY(10px);
+            filter: blur(3px);
+          }
+        }
+      }
+
+      // Smooth close animation for container
+      .header__mobile-nav:not(.active) & {
+        transition: transform 0.35s cubic-bezier(0.4, 0.14, 0.3, 1),
+          opacity 0.25s ease;
+        transition-delay: 0s;
+        transform: translateY(-10px);
+      }
+
+      &__link {
+        display: block;
+        font-size: 19px;
+        line-height: 1.21053;
+        font-weight: 600;
+        letter-spacing: -0.022em;
+        color: #1d1d1f;
+        padding: 14px 0;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        transition: color 0.2s ease, border-color 0.2s ease,
+          transform 0.15s ease;
+
+        &:hover {
+          color: #0066cc;
+          border-color: rgba(0, 102, 204, 0.1);
+        }
+
+        &:active {
+          color: #004499;
+        }
+      }
+    }
+
+    // Smooth backdrop close animation
+    &:not(.active)::before {
+      transition: transform 0.5s cubic-bezier(0.4, 0.14, 0.3, 1);
+      transition-delay: 0.25s;
+    }
+  }
+
+  // Mobile responsive styles
+  @include xs {
+    top: 0; // Remove top header on mobile
+
+    .container-fluid {
+      padding: 0 16px;
+    }
+
+    &__nav {
+      display: none; // Hide navigation on mobile
+    }
+
+    &__menu-btn {
+      display: flex; // Show menu button
+    }
+
+    &__actions {
+      gap: 12px;
+    }
+
+    &__search-btn,
+    &__bag-btn {
+      width: 32px;
+      height: 32px;
+    }
+
+    &__mobile-nav {
+      display: block;
+    }
+  }
+
+  // Tablet responsive styles
+  @media (max-width: 833px) {
+    &__nav {
+      display: none; // Hide navigation on tablet
+    }
+
+    &__menu-btn {
+      display: block; // Show menu button
+    }
+
+    &__mobile-nav {
+      display: block;
+    }
+  }
+}
+
+// Top Header Mobile Responsive
+.top-header {
+  @include xs {
+    display: none; // Hide top header on mobile
+  }
+}
+
+// Body padding to account for fixed headers
+body {
+  padding-top: 84px; // 40px (top header) + 44px (main header)
+
+  @include xs {
+    padding-top: 44px; // Only main header on mobile
+  }
+
+  &.menu-open {
+    overflow: hidden;
+  }
+}

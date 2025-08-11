@@ -1,0 +1,109 @@
+/*BOXED LAYOUT*/
+$container-max-width: 2600px;
+$container-fluid-max-width: 2500px;
+
+/*GRID - media queries breakpoints*/
+$xxs-min: 360px;
+$xs-min: 845px;
+$sm-min: 992px;
+$md-min: 1200px;
+$lg-min: 1600px;
+
+$xxs-max: ($xxs-min - 1); // Small Mobile
+$xs-max: ($xs-min - 1); // Mobile
+$sm-max: ($sm-min - 1); // Tablet
+$md-max: ($md-min - 1); // Desktop
+$lg-max: ($lg-min - 1); // Large Desktop
+
+/*primary colors*/
+$main-cl: #0071e3;
+$yellow-cl: #f9f6ee;
+$white-cl: #ffffff;
+$black-cl: #141414;
+$gray-cl: #888;
+
+// timing transition
+$t: 0.4s;
+$cubic: cubic-bezier(0.59, 0.29, 0.15, 0.93);
+
+/*font families*/
+@import "fonts";
+
+$font-heading: $font-display;
+$font-body: $font-text;
+$font-body-b: $font-text;
+
+:root {
+	// fontsize text
+	--fs100: 10rem;
+	--fs80: 8rem;
+	--fs60: 6rem;
+	--fs48: 4.8rem;
+	--fs40: 4rem;
+	--fs38: 3.8rem;
+	--fs32: 3.2rem;
+	--fs30: 3rem;
+	--fs28: 2.8rem;
+	--fs24: 2.4rem;
+	--fs20: 2rem;
+	--fs18: 1.8rem;
+	--fs16: 1.6rem;
+	--fs14: 1.4rem;
+	--fs12: 1.2rem;
+
+	// variable
+
+	--height-header: 88px;
+	--height-button: 42px;
+	--pd-section: 120px;
+	--gap: 30px;
+
+	@media (max-width: $lg-max) {
+		--height-header: 80px;
+		--fs100: 8.5rem;
+		--fs80: 7rem;
+
+		--pd-section: 90px;
+	}
+	@media (max-width: $md-max) {
+		--fs100: 7.5rem;
+	}
+	@media (max-width: $sm-max) {
+		--height-header: 56px;
+	}
+	@media (max-width: $xs-max) {
+		--pd-section: 56px;
+		--gap: 16px;
+
+		--fs100: 6rem;
+		--fs80: 4.2rem;
+		--fs48: 3.4rem;
+		--fs40: 3.2rem;
+		--fs38: 3rem;
+		--fs32: 3rem;
+		--fs30: 3rem;
+		--fs24: 2.2rem;
+	}
+
+	/*  Container variable for responsive */
+	--container-width: 1470px;
+	--container-width-small: 1040px;
+	--screen-width: 100vw;
+	--halfPadding: calc((var(--screen-width) - var(--container-width)) / 2);
+
+	@media (max-width: $lg-max) {
+		--container-width: 1280px;
+	}
+	@media (max-width: $md-max) {
+		--container-width: 100%;
+	}
+	@media (max-width: $sm-max) {
+		--container-width: 100%;
+	}
+	@media (max-width: $xs-max) {
+		--container-width: 100%;
+	}
+	@media (min-width: $container-max-width) {
+		--screen-width: #{$container-max-width};
+	}
+}
