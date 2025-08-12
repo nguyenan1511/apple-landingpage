@@ -1071,12 +1071,11 @@
     align-items: flex-end;
   }
   &__close {
-    background: none;
+    background: white;
     border: none;
     color: #fff;
     font-size: 4rem;
     border-radius: 100%;
-    border: 1px solid #fff;
     cursor: pointer;
     width: 40px;
     height: 40px;
@@ -1088,9 +1087,9 @@
     top: 20px;
     right: 20px;
     z-index: 1000;
+    transition: transform 0.2s;
     &:hover {
-      color: #f00;
-      border-color: #f00;
+      transform: scale(1.1);
     }
   }
   &__player {

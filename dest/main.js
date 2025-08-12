@@ -419,7 +419,6 @@ $(document).ready(function () {
       if ($modal.hasClass("is-active") && e.key === "Escape") closeModal();
     });
   }
-  modalVideoInit();
 
   // INIT
   function init() {
@@ -433,6 +432,7 @@ $(document).ready(function () {
         autoScrollMediaSlider();
         locoScroll.update();
         introATC();
+        modalVideoInit();
       })
       .fail(function () {
         // console.log('all images loaded, at least one is broken');
