@@ -33,8 +33,8 @@ $(document).ready(function () {
       getDirection: true,
       reloadOnContextChange: true,
       resetNativeScroll: true,
-      tablet: { smooth: false },
-      smartphone: { smooth: false },
+      tablet: { smooth: true },
+      smartphone: { smooth: true },
     });
   }
   scrollSmooth();
@@ -158,6 +158,7 @@ $(document).ready(function () {
       let $slider = $(".tv-slider__wrapper"),
         $sliderParent = $slider.parent(),
         opt = {
+          autoPlay: 3000,
           cellAlign: "center",
           dragThreshold: 0,
           prevNextButtons: false,
@@ -174,6 +175,25 @@ $(document).ready(function () {
       }
 
       $slider.flickity(opt);
+
+      // --- PAUSE/PLAY BUTTON FUNCTIONALITY ---
+      var flkty = $slider.data("flickity");
+      var isPaused = false;
+      var $pauseBtn = $(".pause-button");
+      var $pauseImg = $pauseBtn.find(".pause-button__img");
+      $pauseBtn.off("click.tvSliderPause").on("click.tvSliderPause", function () {
+        if (!isPaused) {
+          flkty.options.autoPlay = false;
+          flkty.stopPlayer();
+          $pauseImg.attr("src", "img/play-icon.svg").attr("alt", "Play");
+          isPaused = true;
+        } else {
+          flkty.options.autoPlay = 3000;
+          flkty.playPlayer();
+          $pauseImg.attr("src", "img/pause-icon.svg").attr("alt", "Pause");
+          isPaused = false;
+        }
+      });
 
       // Navigation dots
       let $dots = $(".tv-slider__dot");
@@ -282,35 +302,6 @@ $(document).ready(function () {
     }
   }
 
-  // SLIDER SERVICES MOBILE
-  function sliderProjectsMobile() {
-    if (
-      $(".scserviceshome__list").length &&
-      $(window).width() <= screen.mobile
-    ) {
-      let $slider = $(".scserviceshome__list"),
-        itemContent = $(".scserviceshome__content .content"),
-        opt = {
-          cellAlign: "center",
-          dragThreshold: 0,
-          prevNextButtons: false,
-          wrapAround: true,
-          pageDots: true,
-          on: {
-            change: function (index) {
-              itemContent
-                .eq(index)
-                .addClass("active")
-                .siblings()
-                .removeClass("active");
-            },
-          },
-        };
-      $slider.flickity(opt);
-      $slider.flickity("select", 1);
-    }
-  }
-
   // BACK TO TOP
   function backToTop() {
     const btn = $(".backtotop");
@@ -333,19 +324,13 @@ $(document).ready(function () {
   // INTRO
   let tlIntro = new gsap.timeline({ delay: 0.5 });
   function introATC() {
-    let localStorageIntro = localStorage.getItem("intro"),
-      intro = $(".introloading"),
+    let intro = $(".introloading"),
       logoIntro = $(".introloading .introloading__logo");
-    if (localStorageIntro != 1) {
-      tlIntro
-        .to(logoIntro, 0.8, { autoAlpha: 1 })
-        .to(logoIntro, 0.5, { autoAlpha: 0, delay: 1.5 })
-        .to(intro, 0.2, { autoAlpha: 0 });
-      tlIntro.play();
-      localStorage.setItem("intro", "1");
-    } else {
-      intro.addClass("--hide");
-    }
+    tlIntro
+      .to(logoIntro, 0.8, { autoAlpha: 1 })
+      .to(logoIntro, 0.5, { autoAlpha: 0, delay: 1.5 })
+      .to(intro, 0.2, { autoAlpha: 0 });
+    tlIntro.play();
   }
 
   // Improved seamless infinite scroll for media-slider-section using GSAP
@@ -404,6 +389,32 @@ $(document).ready(function () {
     animate();
   }
 
+  // --- MODAL VIDEO FUNCTIONALITY ---
+  function modalVideoInit() {
+    var $modal = $("#modal-video");
+    var $openBtn = $(".btn.btn-white:contains('Watch the film'), .btn.btn-primary:contains('Play now')");
+    var $closeBtn = $modal.find(".modal-video__close");
+    var $overlay = $modal.find(".modal-video__overlay");
+    var $video = $modal.find(".modal-video__player");
+
+    $openBtn.on("click", function(e) {
+      e.preventDefault();
+      $modal.addClass("is-active");
+      $video[0].currentTime = 0;
+      $video[0].play();
+    });
+    function closeModal() {
+      $modal.removeClass("is-active");
+      setTimeout(function(){ $video[0].pause(); }, 400); // Wait for fadeout
+    }
+    $closeBtn.on("click", closeModal);
+    $overlay.on("click", closeModal);
+    $(document).on("keydown", function(e) {
+      if ($modal.hasClass("is-active") && (e.key === "Escape")) closeModal();
+    });
+  }
+  modalVideoInit();
+
   // INIT
   function init() {
     $("body")
@@ -412,7 +423,6 @@ $(document).ready(function () {
       .always(function (instance) {
         tvSlider();
         scrollToService();
-        sliderProjectsMobile();
         backToTop();
         autoScrollMediaSlider();
         locoScroll.update();
