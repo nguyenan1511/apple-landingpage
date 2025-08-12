@@ -33,8 +33,8 @@ $(document).ready(function () {
       getDirection: true,
       reloadOnContextChange: true,
       resetNativeScroll: true,
-      tablet: { smooth: true },
-      smartphone: { smooth: true },
+      tablet: { smooth: false },
+      smartphone: { smooth: false },
     });
   }
   scrollSmooth();
@@ -181,19 +181,21 @@ $(document).ready(function () {
       var isPaused = false;
       var $pauseBtn = $(".pause-button");
       var $pauseImg = $pauseBtn.find(".pause-button__img");
-      $pauseBtn.off("click.tvSliderPause").on("click.tvSliderPause", function () {
-        if (!isPaused) {
-          flkty.options.autoPlay = false;
-          flkty.stopPlayer();
-          $pauseImg.attr("src", "img/play-icon.svg").attr("alt", "Play");
-          isPaused = true;
-        } else {
-          flkty.options.autoPlay = 3000;
-          flkty.playPlayer();
-          $pauseImg.attr("src", "img/pause-icon.svg").attr("alt", "Pause");
-          isPaused = false;
-        }
-      });
+      $pauseBtn
+        .off("click.tvSliderPause")
+        .on("click.tvSliderPause", function () {
+          if (!isPaused) {
+            flkty.options.autoPlay = false;
+            flkty.stopPlayer();
+            $pauseImg.attr("src", "img/play-icon.svg").attr("alt", "Play");
+            isPaused = true;
+          } else {
+            flkty.options.autoPlay = 3000;
+            flkty.playPlayer();
+            $pauseImg.attr("src", "img/pause-icon.svg").attr("alt", "Pause");
+            isPaused = false;
+          }
+        });
 
       // Navigation dots
       let $dots = $(".tv-slider__dot");
@@ -392,12 +394,14 @@ $(document).ready(function () {
   // --- MODAL VIDEO FUNCTIONALITY ---
   function modalVideoInit() {
     var $modal = $("#modal-video");
-    var $openBtn = $(".btn.btn-white:contains('Watch the film'), .btn.btn-primary:contains('Play now')");
+    var $openBtn = $(
+      ".btn.btn-white:contains('Watch the film'), .btn.btn-primary:contains('Play now')"
+    );
     var $closeBtn = $modal.find(".modal-video__close");
     var $overlay = $modal.find(".modal-video__overlay");
     var $video = $modal.find(".modal-video__player");
 
-    $openBtn.on("click", function(e) {
+    $openBtn.on("click", function (e) {
       e.preventDefault();
       $modal.addClass("is-active");
       $video[0].currentTime = 0;
@@ -405,12 +409,14 @@ $(document).ready(function () {
     });
     function closeModal() {
       $modal.removeClass("is-active");
-      setTimeout(function(){ $video[0].pause(); }, 400); // Wait for fadeout
+      setTimeout(function () {
+        $video[0].pause();
+      }, 400); // Wait for fadeout
     }
     $closeBtn.on("click", closeModal);
     $overlay.on("click", closeModal);
-    $(document).on("keydown", function(e) {
-      if ($modal.hasClass("is-active") && (e.key === "Escape")) closeModal();
+    $(document).on("keydown", function (e) {
+      if ($modal.hasClass("is-active") && e.key === "Escape") closeModal();
     });
   }
   modalVideoInit();
