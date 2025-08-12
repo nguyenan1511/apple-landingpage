@@ -410,11 +410,9 @@
 }
 
 .--bg-black {
-  background: url(../img/bg-nav.jpg) no-repeat center;
   background-size: cover;
 }
 .--bg-white {
-  background: url(../img/);
 }
 
 .clippath-hover {
@@ -1031,6 +1029,6 @@
 }
 
 .tv-slider__figure {
-  transition: transform 0.5s cubic-bezier(.77,0,.18,1);
+  transition: transform 0.5s cubic-bezier(0.77, 0, 0.18, 1);
   will-change: transform;
 }

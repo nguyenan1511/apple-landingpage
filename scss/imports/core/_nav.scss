@@ -1,170 +1,169 @@
 .nav {
-	--pdItemMenu: 30px;
-	@include size(100%, 100vh);
-	position: fixed;
-	top: 0;
-	left: 0;
-	background: url(../img/bg-nav.jpg) no-repeat center;
-	background-size: cover;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	z-index: 200;
-	clip-path: inset(0 0 100% 0);
-	@include transition(0.9s cubic-bezier(0.68, 0.09, 0.16, 0.99));
-	will-change: clip-path;
-	pointer-events: none;
-	.container {
-		display: flex;
-		justify-content: space-between;
-		padding-top: 20px;
-	}
-	&__main {
-		padding-right: 40px;
-		ul {
-			li {
-				a {
-					width: max-content;
-					display: flex;
-					font-family: $font-heading;
-					color: $white-cl;
-					white-space: nowrap;
-					padding: var(--pdItemMenu) 0;
-					@include transition($t);
-					.number {
-						margin-right: 8px;
-						margin-top: 4px;
-					}
-					.text {
-						font-size: var(--fs80);
-						line-height: 100%;
-					}
-					&:hover {
-						color: $main-cl;
-					}
-				}
-				ul {
-					display: flex;
-					padding-left: 20px;
-					margin-top: -10px;
-					li {
-						a {
-							padding: 0 14px;
-						}
-					}
-				}
-			}
-		}
-	}
-	&__right {
-		max-width: 456px;
-		padding-top: 30px;
-		.submenu {
-			li {
-				a {
-					font-family: $font-heading;
-					color: $white-cl;
-					white-space: nowrap;
-					padding: 8px 0;
-					font-size: var(--fs40);
-					line-height: 120%;
-					display: block;
-					@include transition($t);
-					&:hover {
-						color: $main-cl;
-					}
-				}
-			}
-		}
-		.infocontact {
-			margin: 40px 0 200px 0;
-		}
-	}
-	&.active {
-		clip-path: inset(0 0 0 0);
-		pointer-events: auto;
-	}
+  --pdItemMenu: 30px;
+  @include size(100%, 100vh);
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  clip-path: inset(0 0 100% 0);
+  @include transition(0.9s cubic-bezier(0.68, 0.09, 0.16, 0.99));
+  will-change: clip-path;
+  pointer-events: none;
+  .container {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+  }
+  &__main {
+    padding-right: 40px;
+    ul {
+      li {
+        a {
+          width: max-content;
+          display: flex;
+          font-family: $font-heading;
+          color: $white-cl;
+          white-space: nowrap;
+          padding: var(--pdItemMenu) 0;
+          @include transition($t);
+          .number {
+            margin-right: 8px;
+            margin-top: 4px;
+          }
+          .text {
+            font-size: var(--fs80);
+            line-height: 100%;
+          }
+          &:hover {
+            color: $main-cl;
+          }
+        }
+        ul {
+          display: flex;
+          padding-left: 20px;
+          margin-top: -10px;
+          li {
+            a {
+              padding: 0 14px;
+            }
+          }
+        }
+      }
+    }
+  }
+  &__right {
+    max-width: 456px;
+    padding-top: 30px;
+    .submenu {
+      li {
+        a {
+          font-family: $font-heading;
+          color: $white-cl;
+          white-space: nowrap;
+          padding: 8px 0;
+          font-size: var(--fs40);
+          line-height: 120%;
+          display: block;
+          @include transition($t);
+          &:hover {
+            color: $main-cl;
+          }
+        }
+      }
+    }
+    .infocontact {
+      margin: 40px 0 200px 0;
+    }
+  }
+  &.active {
+    clip-path: inset(0 0 0 0);
+    pointer-events: auto;
+  }
 
-	@include lg {
-		--pdItemMenu: 20px;
-		&__right {
-			padding-top: 30px;
-			.infocontact {
-				margin: 40px 0 60px 0;
-			}
-		}
-	}
-	@include sm {
-		--pdItemMenu: 14px;
-		align-items: flex-start;
-		overflow-y: auto;
-		.container {
-			flex-direction: column;
-			min-height: 460px;
-			overflow-y: auto;
-			padding-top: 80px;
-			padding-bottom: 50px;
-		}
-		&__main {
-			padding-right: 40px;
-			ul {
-				li {
-					ul {
-						margin-top: 0px;
-						li {
-							a {
-								padding: 2px 7px;
-							}
-						}
-					}
-				}
-			}
-		}
-		&__right {
-			padding-top: 10px;
-			.submenu {
-				display: flex;
-				li {
-					a {
-						padding: 8px 0;
-						font-size: var(--fs24);
-					}
-					&:not(:last-child) {
-						a {
-							margin-right: 20px;
-						}
-					}
-				}
-			}
-			.infocontact {
-				display: none;
-			}
-			.followus {
-				display: flex;
-				align-items: center;
-				margin-right: 20px;
-				margin-top: 30px;
-				&__title {
-					margin-right: 20px;
-					margin-bottom: 0;
-				}
-			}
-		}
-	}
-	@include xs {
-		--pdItemMenu: 12px;
-		.container {
-			margin-top: 0;
-			padding-bottom: 40px;
-		}
-		&__main {
-			ul {
-				li {
-					ul {
-						flex-direction: column;
-					}
-				}
-			}
-		}
-	}
+  @include lg {
+    --pdItemMenu: 20px;
+    &__right {
+      padding-top: 30px;
+      .infocontact {
+        margin: 40px 0 60px 0;
+      }
+    }
+  }
+  @include sm {
+    --pdItemMenu: 14px;
+    align-items: flex-start;
+    overflow-y: auto;
+    .container {
+      flex-direction: column;
+      min-height: 460px;
+      overflow-y: auto;
+      padding-top: 80px;
+      padding-bottom: 50px;
+    }
+    &__main {
+      padding-right: 40px;
+      ul {
+        li {
+          ul {
+            margin-top: 0px;
+            li {
+              a {
+                padding: 2px 7px;
+              }
+            }
+          }
+        }
+      }
+    }
+    &__right {
+      padding-top: 10px;
+      .submenu {
+        display: flex;
+        li {
+          a {
+            padding: 8px 0;
+            font-size: var(--fs24);
+          }
+          &:not(:last-child) {
+            a {
+              margin-right: 20px;
+            }
+          }
+        }
+      }
+      .infocontact {
+        display: none;
+      }
+      .followus {
+        display: flex;
+        align-items: center;
+        margin-right: 20px;
+        margin-top: 30px;
+        &__title {
+          margin-right: 20px;
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+  @include xs {
+    --pdItemMenu: 12px;
+    .container {
+      margin-top: 0;
+      padding-bottom: 40px;
+    }
+    &__main {
+      ul {
+        li {
+          ul {
+            flex-direction: column;
+          }
+        }
+      }
+    }
+  }
 }

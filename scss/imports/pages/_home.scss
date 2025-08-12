@@ -3,6 +3,16 @@ body {
   color: #1d1d1f;
 }
 
+.mainwrapper {
+  section {
+    margin-bottom: 12px;
+  }
+  .sections-wrapper {
+    section {
+      margin-bottom: 0px;
+    }
+  }
+}
 .sections-wrapper {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -10,6 +20,7 @@ body {
   padding: 0 12px;
   margin: 0 auto;
   max-width: 2600px;
+  margin-bottom: 12px;
 
   @media only screen and (max-width: 734px) {
     grid-template-columns: 1fr;
