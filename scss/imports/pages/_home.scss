@@ -143,6 +143,9 @@ body {
       background-repeat: no-repeat;
       background-image: url("../img/mac_air_mb.jpg");
     }
+    .banner-buttons {
+      gap: 12px;
+    }
   }
 
   .banner-footer {
@@ -424,7 +427,9 @@ body {
       padding: 25px 20px;
       height: 500px;
     }
-
+    .iphone-buttons {
+      gap: 12px;
+    }
     .iphone-title {
       font-size: 40px;
       line-height: 1.1;
