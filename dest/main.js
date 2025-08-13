@@ -105,6 +105,53 @@ $(document).ready(function () {
   }
   handleMobileMenu();
 
+  // Handle Search Overlay
+  function handleSearchOverlay() {
+    const searchBtn = $(".header__search-btn");
+    const searchOverlay = $(".search-overlay");
+    const searchContent = $(".search-overlay__content");
+    const searchInput = $(".search-overlay__input");
+    const searchBack = $(".search-overlay__back");
+
+    function closeSearch() {
+      searchOverlay.removeClass("active");
+      $("body").removeClass("search-open");
+    }
+
+    searchBtn.on("click", function () {
+      searchOverlay.addClass("active");
+      searchInput.focus();
+      $("body").addClass("search-open");
+    });
+
+    searchBack.on("click", function () {
+      closeSearch();
+    });
+
+    // Close search on escape key
+    $(document).on("keydown", function (e) {
+      if (e.key === "Escape" && searchOverlay.hasClass("active")) {
+        closeSearch();
+      }
+    });
+
+    // Close search when clicking outside content
+    searchOverlay.on("click", function (e) {
+      if (
+        !$(e.target).closest(searchContent).length &&
+        !$(e.target).closest(searchBtn).length
+      ) {
+        closeSearch();
+      }
+    });
+
+    // Prevent clicks inside content from closing
+    searchContent.on("click", function (e) {
+      e.stopPropagation();
+    });
+  }
+  handleSearchOverlay();
+
   // CHANGE BACKGROUND HEADER SCROLLING
   $(window).on("scroll", function () {
     handleHeaderScroll();
