@@ -24,7 +24,7 @@
 </head>
 
 <body class="homepage">
-    <div class="introloading">
+    <div class="introloading --hide">
         <div class="introloading__logo">
             <img src="img/logo-apple-1.png" alt="" class="introloading__logo-img">
         </div>
@@ -255,28 +255,47 @@
                     </section>
 
                     <section class="promo-section fade-section">
-                        <div class="promo-wrapper">
-                            <div class="promo-content">
-                                <div class="promo-messages">
-                                    <div class="message message-primary">
-                                        <p>Buy Mac</p>
-                                        <p>or iPad</p>
-                                        <p>for college</p>
-                                    </div>
-                                    <div class="message message-secondary">
-                                        <p>with education savings</p>
-                                    </div>
-                                    <div class="message message-tertiary">
-                                        <span class="emoji">👨‍🎓</span>
-                                        <p>Choose</p>
-                                        <p>AirPods or</p>
-                                        <p>an eligible</p>
-                                        <p>accessory<sup>1</sup></p>
-                                    </div>
+                        <picture>
+                            <source srcset="img/promo-section.jpg" media="(min-width: 734px)">
+                            <img src="img/promo-section-mb.jpg" alt="">
+                        </picture>
+                        <div class="promo-content">
+                            <div class="promo-messages">
+                                <div class="message message-primary">
+                                    <p>Buy Mac</p>
+                                    <p>or iPad</p>
+                                    <p>for college</p>
+                                    <img class="promo-1" src="img/promo-1.png" alt="">
+                                    <img class="promo-2" src="img/promo-2.png" alt="">
                                 </div>
-                                <a href="#" class="promo-button">Shop</a>
+                                <div class="message message-secondary">
+                                    <svg class="bubble-svg" xmlns="http://www.w3.org/2000/svg"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%"
+                                        viewBox="0 0 614 94" preserveAspectRatio="none">
+                                        <path
+                                            d="M598.708,68.2V46.847l-0.009.007A44.66,44.66,0,0,0,554.255,2.041L45.484,1.957a44.85,44.85,0,0,0-.052,89.7L554.2,91.739a44.091,44.091,0,0,0,29.025-10.847c0.054,0.063.1,0.127,0.157,0.192,13.2,15.237,27.881,9.657,27.881,9.657C603.816,89.025,598.708,78.722,598.708,68.2Z">
+                                        </path>
+                                        <foreignObject x="10" y="15" width="100%" height="100%">
+                                            <p>with education savings</p>
+                                        </foreignObject>
+                                    </svg>
+                                </div>
+                                <div class="message message-tertiary">
+                                    <svg class="bubble-svg" xmlns="http://www.w3.org/2000/svg"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%"
+                                        viewBox="0 0 628 480" preserveAspectRatio="none">
+                                        <path
+                                            d="M597.967,425.7V358.788c0.01-1.075.025-2.15,0.031-3.225,0.032-5.247.03-10.493,0.03-15.74v-201.4c0-5.247,0-10.493-.03-15.74-0.027-4.42-.078-8.838-0.2-13.257a192.469,192.469,0,0,0-2.541-28.85,97.261,97.261,0,0,0-9.052-27.439A92.311,92.311,0,0,0,545.827,12.8a97.567,97.567,0,0,0-27.458-9.037,193.015,193.015,0,0,0-28.9-2.539c-4.424-.119-8.848-0.17-13.273-0.2C470.947,1,465.694,1,460.44,1H138.588c-5.253,0-10.506,0-15.76.03-4.425.027-8.849,0.078-13.273,0.2a193.021,193.021,0,0,0-28.9,2.539A97.567,97.567,0,0,0,53.2,12.8,92.313,92.313,0,0,0,12.82,53.135,97.291,97.291,0,0,0,3.768,80.574a192.414,192.414,0,0,0-2.54,28.85c-0.119,4.419-.171,8.837-0.2,13.257C1,127.928,1,133.174,1,138.421v201.4c0,5.247,0,10.493.029,15.74,0.027,4.42.078,8.838,0.2,13.257a192.405,192.405,0,0,0,2.54,28.85,97.291,97.291,0,0,0,9.052,27.439A92.307,92.307,0,0,0,53.2,465.439a97.573,97.573,0,0,0,27.458,9.037,192.94,192.94,0,0,0,28.9,2.539c4.424,0.119,8.848.17,13.273,0.2,5.254,0.031,10.507.029,15.76,0.029H460.44c5.254,0,10.507,0,15.76-.029,4.425-.028,8.849-0.079,13.273-0.2a192.934,192.934,0,0,0,28.9-2.539,97.573,97.573,0,0,0,27.458-9.037A92.356,92.356,0,0,0,563.751,453.5c0.111,0.132.212,0.271,0.326,0.4,29.183,33.379,61.661,21.155,61.661,21.155C609.264,471.3,597.967,448.731,597.967,425.7Z">
+                                        </path>
+                                    </svg>
+                                    <p>Choose</p>
+                                    <p> AirPods or</p>
+                                    <p>an eligible</p>
+                                    <p>accessory</p>
+                                    <img class="icon-promo" src="img/icon-promo.png" alt="">
+                                </div>
                             </div>
-
+                            <a href="#" class="btn btn-primary">Shop</a>
                         </div>
                     </section>
                     <div class="sections-wrapper">

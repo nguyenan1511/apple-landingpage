@@ -522,6 +522,7 @@ $(document).ready(function () {
 
     // FADE-IN ANIMATION FOR SECTIONS (with correct scroller)
     if (window.gsap && window.ScrollTrigger) {
+      // General fade-in animation
       gsap.utils.toArray(".fade-section").forEach(function (section) {
         gsap.fromTo(
           section,

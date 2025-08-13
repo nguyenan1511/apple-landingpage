@@ -1116,31 +1116,50 @@ body {
 }
 
 .promo-section {
-  width: 100%;
-  background-image: url("../img/promo-section.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  padding: 80px 0;
+  perspective: 1000px;
   overflow: hidden;
   position: relative;
 
-  &::before {
-    content: "";
+  picture {
+    display: block;
+    transform-style: preserve-3d;
+    will-change: transform;
+    position: relative;
+    z-index: 2;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  canvas {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.92);
-  }
-
-  .promo-wrapper {
-    max-width: 1024px;
-    margin: 0 auto;
-    padding: 0 20px;
-    position: relative;
     z-index: 1;
+    pointer-events: none;
+  }
+  width: 100%;
+  padding: 80px 0 60px 0;
+  height: 692px;
+  overflow: hidden;
+  position: relative;
+
+  picture {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
 
   .promo-content {
@@ -1154,119 +1173,102 @@ body {
 
     .message {
       font-family: $font-display;
-      color: #1d1d1f;
+      color: #fff;
+      width: 290px;
 
       &.message-primary {
-        font-size: 48px;
-        line-height: 1.08349;
+        font-size: 40px;
+        line-height: 1;
         font-weight: 600;
         letter-spacing: -0.003em;
-
+        text-align: left;
+        background: #007aff;
+        padding: 20px 30px;
+        border-radius: 40px;
+        position: relative;
+        margin: 0 auto;
         p {
           margin: 0;
+          position: relative;
+          z-index: 1;
           &:not(:last-child) {
             margin-bottom: 0.1em;
           }
+        }
+        .promo-1 {
+          width: 124px;
+          height: auto;
+          position: absolute;
+          top: -50px;
+          right: -50px;
+          z-index: 2;
+        }
+        .promo-2 {
+          z-index: 1;
+          width: 104px;
+          height: auto;
+          position: absolute;
+          top: 50px;
+          right: -50px;
         }
       }
 
       &.message-secondary {
-        font-size: 24px;
-        line-height: 1.16667;
-        font-weight: 400;
-        letter-spacing: 0.009em;
-        margin: 0.6em 0;
+        margin: 10px auto 16px auto;
+        svg {
+          width: 290px;
+          fill: #007aff;
+          position: relative;
+          p {
+            color: #fff;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-52%, -37%);
+            font-size: 52px;
+            font-weight: 600;
+            width: 100%;
+            height: 100%;
+          }
+        }
       }
 
       &.message-tertiary {
-        font-size: 48px;
-        line-height: 1.08349;
-        font-weight: 600;
-        letter-spacing: -0.003em;
-        color: #0066cc;
-        margin-top: 0.8em;
-
-        .emoji {
-          font-size: 32px;
-          vertical-align: middle;
-          margin-right: 8px;
+        margin: auto;
+        position: relative;
+        padding: 30px 40px;
+        svg {
+          width: 290px;
+          fill: #007aff;
+          position: absolute;
+          top: 0;
+          left: 0;
         }
-
         p {
-          margin: 0;
-          &:not(:last-child) {
-            margin-bottom: 0.1em;
-          }
-        }
-
-        sup {
-          font-size: 0.5em;
-          top: -0.5em;
           position: relative;
+          z-index: 1;
+          color: #fff;
+          font-size: 40px;
+          line-height: 1.1;
+          font-weight: 600;
+          text-align: left;
+        }
+        .icon-promo {
+          width: 70px;
+          height: auto;
+          position: absolute;
+          top: -20px;
+          left: -20px;
         }
       }
     }
   }
 
-  .promo-button {
-    display: inline-block;
-    font-family: $font-text;
-    font-size: 17px;
-    line-height: 1.17648;
-    font-weight: 400;
-    letter-spacing: -0.022em;
-    min-width: 26px;
-    padding: 8px 16px;
-    border-radius: 980px;
-    background: #0066cc;
-    color: #fff;
-    text-decoration: none;
-    transition: all 0.2s ease;
-
+  .btn {
+    border-radius: 50px;
+    border-width: 1px;
     &:hover {
       background: #0077ed;
-    }
-  }
-
-  @media only screen and (max-width: 1068px) {
-    padding: 65px 0;
-
-    .promo-messages {
-      .message {
-        &.message-primary {
-          font-size: 40px;
-          line-height: 1.1;
-          letter-spacing: 0;
-        }
-
-        &.message-secondary {
-          font-size: 21px;
-          line-height: 1.19048;
-          letter-spacing: 0.011em;
-        }
-
-        &.message-tertiary {
-          font-size: 40px;
-          line-height: 1.1;
-          letter-spacing: 0;
-
-          .emoji {
-            font-size: 28px;
-          }
-        }
-      }
-    }
-
-    .promo-images {
-      .promo-image {
-        &.macbook {
-          width: 300px;
-        }
-
-        &.ipad {
-          width: 220px;
-        }
-      }
     }
   }
 
@@ -1275,42 +1277,42 @@ body {
 
     .promo-messages {
       .message {
+        width: 233px;
         &.message-primary {
-          font-size: 32px;
-          line-height: 1.125;
-          letter-spacing: 0.004em;
-        }
-
-        &.message-secondary {
-          font-size: 19px;
-          line-height: 1.21053;
-          letter-spacing: 0.012em;
-        }
-
-        &.message-tertiary {
-          font-size: 32px;
-          line-height: 1.125;
-          letter-spacing: 0.004em;
-
-          .emoji {
-            font-size: 24px;
+          font-size: 36px;
+          padding: 20px;
+          border-radius: 30px;
+          .promo-1 {
+            width: 70px;
+            top: -20px;
+            right: -20px;
+          }
+          .promo-2 {
+            width: 50px;
+            top: 20px;
+            right: -20px;
           }
         }
-      }
-    }
-
-    .promo-images {
-      .promo-image {
-        &.macbook {
-          width: 200px;
-          top: -10%;
-          right: -10%;
+        &.message-secondary {
+          margin: 10px auto 16px auto;
+          svg {
+            width: 233px;
+          }
         }
+        &.message-tertiary {
+          padding: 20px;
+          svg {
+            width: 233px;
+          }
 
-        &.ipad {
-          width: 150px;
-          bottom: -5%;
-          left: -5%;
+          p {
+            font-size: 36px;
+          }
+          .icon-promo {
+            width: 50px;
+            top: -20px;
+            left: -10px;
+          }
         }
       }
     }
