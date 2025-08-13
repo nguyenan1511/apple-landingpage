@@ -1119,6 +1119,7 @@ body {
   perspective: 1000px;
   overflow: hidden;
   position: relative;
+  height: 692px;
 
   picture {
     display: block;
@@ -1215,21 +1216,26 @@ body {
 
       &.message-secondary {
         margin: 10px auto 16px auto;
+        position: relative;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         svg {
           width: 290px;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
           fill: #007aff;
+        }
+        p {
+          color: #fff;
+          line-height: 1;
           position: relative;
-          p {
-            color: #fff;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-52%, -37%);
-            font-size: 52px;
-            font-weight: 600;
-            width: 100%;
-            height: 100%;
-          }
+          z-index: 1;
+          font-size: 22px;
+          font-weight: 600;
         }
       }
 
@@ -1273,6 +1279,7 @@ body {
   }
 
   @media only screen and (max-width: 734px) {
+    height: 550px;
     padding: 45px 0;
 
     .promo-messages {
@@ -1295,8 +1302,13 @@ body {
         }
         &.message-secondary {
           margin: 10px auto 16px auto;
+          height: 40px;
+          p {
+            font-size: 18px;
+          }
           svg {
             width: 233px;
+            height: 100%;
           }
         }
         &.message-tertiary {
