@@ -1,5 +1,8 @@
 /node_modules
 /.sass-cache
+.sass-cache
+.vscode
+
 # /dest/style.min.css
 # /dest/style.min.css.map
 # /dest/jsmain.min.js

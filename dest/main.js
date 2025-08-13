@@ -420,6 +420,73 @@ $(document).ready(function () {
     });
   }
 
+  // DEBUG: Confirm LocomotiveScroll and GSAP/ScrollTrigger are loaded
+  console.log("LocomotiveScroll:", typeof LocomotiveScroll !== "undefined");
+  console.log("GSAP:", typeof gsap !== "undefined");
+  console.log("ScrollTrigger:", typeof ScrollTrigger !== "undefined");
+
+  function initAnimate() {
+    // Set initial opacity:0 for all fade-section elements (for safety)
+    document.querySelectorAll(".fade-section").forEach(function (section) {
+      section.style.opacity = 0;
+    });
+
+    // Register ScrollTrigger
+    if (window.gsap && window.ScrollTrigger) {
+      gsap.registerPlugin(ScrollTrigger);
+    }
+
+    // LocomotiveScroll + ScrollTrigger integration
+    if (window.gsap && window.ScrollTrigger && locoScroll) {
+      ScrollTrigger.scrollerProxy(".scrollmain", {
+        scrollTop(value) {
+          return arguments.length
+            ? locoScroll.scrollTo(value, 0, 0)
+            : locoScroll.scroll.instance.scroll.y;
+        },
+        getBoundingClientRect() {
+          return {
+            top: 0,
+            left: 0,
+            width: window.innerWidth,
+            height: window.innerHeight,
+          };
+        },
+        pinType: document.querySelector(".scrollmain").style.transform
+          ? "transform"
+          : "fixed",
+      });
+      locoScroll.on("scroll", ScrollTrigger.update);
+      ScrollTrigger.addEventListener("refresh", () => locoScroll.update());
+      setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 100);
+    }
+
+    // FADE-IN ANIMATION FOR SECTIONS (with correct scroller)
+    if (window.gsap && window.ScrollTrigger) {
+      gsap.utils.toArray(".fade-section").forEach(function (section) {
+        gsap.fromTo(
+          section,
+          { opacity: 0, y: 60 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: section,
+              scroller: ".scrollmain",
+              start: "top 80%",
+              toggleActions: "play none none none",
+              once: true,
+            },
+          }
+        );
+      });
+    }
+  }
+
   // INIT
   function init() {
     $("body")
@@ -430,9 +497,11 @@ $(document).ready(function () {
         scrollToService();
         backToTop();
         autoScrollMediaSlider();
-        locoScroll.update();
+
         introATC();
         modalVideoInit();
+        locoScroll.update();
+        initAnimate();
       })
       .fail(function () {
         // console.log('all images loaded, at least one is broken');
