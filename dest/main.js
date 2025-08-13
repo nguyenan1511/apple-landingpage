@@ -2,7 +2,7 @@
 $(document).ready(function () {
   let header = $(".header"),
     screen = {
-      mobile: 992,
+      mobile: 734,
       tablet: 1024,
       desktop: 1199,
     },
@@ -154,7 +154,7 @@ $(document).ready(function () {
 
   // TV+ Slider
   function tvSlider() {
-    if ($(".tv-slider__wrapper").length) {
+    if ($(".tv-slider__wrapper").length && $(window).width() > screen.mobile) {
       let $slider = $(".tv-slider__wrapper"),
         $sliderParent = $slider.parent(),
         opt = {
@@ -177,10 +177,10 @@ $(document).ready(function () {
       $slider.flickity(opt);
 
       // --- PAUSE/PLAY BUTTON FUNCTIONALITY ---
-      var flkty = $slider.data("flickity");
-      var isPaused = false;
-      var $pauseBtn = $(".pause-button");
-      var $pauseImg = $pauseBtn.find(".pause-button__img");
+      let flkty = $slider.data("flickity");
+      let isPaused = false;
+      let $pauseBtn = $(".pause-button");
+      let $pauseImg = $pauseBtn.find(".pause-button__img");
       $pauseBtn
         .off("click.tvSliderPause")
         .on("click.tvSliderPause", function () {
@@ -213,7 +213,6 @@ $(document).ready(function () {
           var index = $(this).index();
           $slider.flickity("select", index);
         });
-
       // Track previous index for animation
       let prevIndex = 0;
 
@@ -223,8 +222,6 @@ $(document).ready(function () {
         .on("change.flickity", function (event, index) {
           $dots.removeClass("active");
           $dots.eq(index).addClass("active");
-
-          // Animate only the outgoing slide's content opacity to 0 and move up
           let $prevSlide = $(".tv-slider__item").eq(prevIndex),
             $prevContent = $prevSlide.find(".tv-slider__content");
           gsap.to($prevContent, {
@@ -233,8 +230,9 @@ $(document).ready(function () {
             duration: 0.4, // slower
             ease: "cubic-bezier(.77,0,.18,1)",
           });
-
           prevIndex = index;
+
+          // Animate only the outgoing slide's content opacity to 0 and move up
         });
 
       // Update select event
@@ -261,46 +259,58 @@ $(document).ready(function () {
       setTimeout(function () {
         $slider.flickity("resize");
       }, 100);
-
-      // Get Flickity instance
-      var flkty = $slider.data("flickity");
-
-      // Real-time opacity transition on drag
-      $slider.off("dragMove.flickity").on("dragMove.flickity", function () {
-        var slides = flkty.slides;
-        var viewportWidth = flkty.size.width;
-        slides.forEach(function (slide) {
-          var slideElem = slide.cells[0].element;
-          var $content = $(slideElem).find(".tv-slider__content");
-          var slideOffset = slide.target - flkty.x;
-          var opacity = 1 - Math.abs(slideOffset / viewportWidth);
-          opacity = Math.max(0, Math.min(1, opacity));
-          $content.css("opacity", opacity);
+    }
+  }
+  // TV+ Slider Mobile
+  function tvSliderMobile() {
+    if ($(".tv-slider__wrapper").length && $(window).width() <= screen.mobile) {
+      let $slider = $(".tv-slider__wrapper"),
+        itemContent = $(".tv-slider__content"),
+        opt = {
+          cellAlign: "center",
+          autoPlay: 3000,
+          dragThreshold: 0,
+          prevNextButtons: false,
+          wrapAround: true,
+          pageDots: true,
+          on: {
+            change: function (index) {
+              itemContent
+                .eq(index)
+                .addClass("active")
+                .siblings()
+                .removeClass("active");
+            },
+          },
+        };
+      $slider.flickity(opt);
+      // Allow clicking on a tv-slider__item to activate it
+      $(document)
+        .off("click.tvSliderItem")
+        .on("click.tvSliderItem", ".tv-slider__item", function () {
+          var index = $(this).index();
+          $slider.flickity("select", index);
         });
-      });
-    }
-  }
-
-  function setHeightAutoServieItems() {
-    if ($(".servicepage").length) {
-      $(".service__item").css({
-        height: "auto",
-      });
-    }
-  }
-
-  // SCROLL TO SERVICE
-  function scrollToService() {
-    if ($(".servicepage").length) {
-      let hash = window.location.hash;
-      if (hash !== "") {
-        setTimeout(() => {
-          locoScroll.scrollTo(hash, {
-            offset: -100,
-            duration: 100,
-          });
-        }, 200);
-      }
+      // Pause/Play Button
+      let flkty = $slider.data("flickity");
+      let isPaused = false;
+      let $pauseBtn = $(".pause-button");
+      let $pauseImg = $pauseBtn.find(".pause-button__img").eq(0);
+      $pauseBtn
+        .off("click.tvSliderPause")
+        .on("click.tvSliderPause", function () {
+          if (!isPaused) {
+            flkty.options.autoPlay = false;
+            flkty.stopPlayer();
+            $pauseImg.attr("src", "img/play-icon.svg").attr("alt", "Play");
+            isPaused = true;
+          } else {
+            flkty.options.autoPlay = 3000;
+            flkty.playPlayer();
+            $pauseImg.attr("src", "img/pause-icon.svg").attr("alt", "Pause");
+            isPaused = false;
+          }
+        });
     }
   }
 
@@ -494,10 +504,9 @@ $(document).ready(function () {
       .progress({ background: true }, function (instance, image) {})
       .always(function (instance) {
         tvSlider();
-        scrollToService();
+        tvSliderMobile();
         backToTop();
         autoScrollMediaSlider();
-
         introATC();
         modalVideoInit();
         locoScroll.update();

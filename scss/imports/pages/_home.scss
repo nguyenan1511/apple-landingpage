@@ -989,6 +989,9 @@ body {
       gap: 12px;
       align-items: center;
     }
+    @media only screen and (max-width: 734px) {
+      display: none;
+    }
   }
 
   &__dot {
@@ -1027,6 +1030,12 @@ body {
     width: 1250px;
     opacity: 0.5;
     overflow: hidden;
+    transition: opacity 0.2s ease;
+    .tv-slider__content {
+      transition: all 0.2s ease;
+      transform: translateY(30px);
+      opacity: 0;
+    }
     @media only screen and (max-width: 1279px) {
       width: 980px;
       height: 520px;
@@ -1043,6 +1052,10 @@ body {
 
   .flickity-slider .tv-slider__item.is-selected {
     opacity: 1;
+    .tv-slider__content {
+      transform: translateY(0);
+      opacity: 1;
+    }
   }
   .tv-slider__content {
     position: absolute;
@@ -1057,6 +1070,7 @@ body {
     gap: 20px;
     padding: 40px;
     color: #fff;
+    opacity: 0;
     &-appleTV {
       position: absolute;
       top: 30px;
@@ -1077,7 +1091,8 @@ body {
       font-weight: 500;
     }
     @media only screen and (max-width: 734px) {
-      padding: 20px;
+      padding: 20px 20px 40px 10px;
+      opacity: 1;
       .tv-slider__content {
         &-appleTV {
           display: block;

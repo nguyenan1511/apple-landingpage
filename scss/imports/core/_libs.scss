@@ -133,7 +133,7 @@ html.has-scroll-dragging {
     justify-content: center;
     position: absolute;
     left: 50%;
-    bottom: 30px;
+    bottom: 10px;
     @include transform(translateX(-50%));
     .dot {
         @include size(6px);
