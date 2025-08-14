@@ -39,6 +39,10 @@ body {
   overflow: hidden;
   display: flex;
   align-items: center;
+  padding-top: 84px;
+  @include xs {
+    padding-top: 44px;
+  }
 
   .banner-wrapper {
     width: 100%;

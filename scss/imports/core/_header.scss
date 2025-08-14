@@ -428,14 +428,14 @@
 }
 
 // Body padding to account for fixed headers
-body {
-  padding-top: 84px; // 40px (top header) + 44px (main header)
+// body {
+//   padding-top: 84px; // 40px (top header) + 44px (main header)
 
-  @include xs {
-    padding-top: 44px; // Only main header on mobile
-  }
+//   @include xs {
+//     padding-top: 44px; // Only main header on mobile
+//   }
 
-  &.menu-open {
-    overflow: hidden;
-  }
-}
+//   &.menu-open {
+//     overflow: hidden;
+//   }
+// }
