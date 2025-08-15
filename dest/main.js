@@ -591,9 +591,9 @@ $(document).ready(function () {
         autoScrollMediaSlider();
         introATC();
         modalVideoInit();
+        sliderIphone();
         locoScroll.update();
         initAnimate();
-        sliderIphone();
       })
       .fail(function () {
         // console.log('all images loaded, at least one is broken');
