@@ -23,7 +23,7 @@
 </head>
 
 <body class="homepage">
-    <div class="introloading">
+    <div class="introloading --hide">
         <img src="img/logo-apple.png" alt="" class="introloading__logo">
     </div>
     <div class="top-header">
@@ -100,6 +100,102 @@
             </div>
         </div>
     </header>
+
+    <!-- Sub-header with product categories and promotional offer -->
+    <div class="sub-header">
+        <div class="container">
+            <!-- Product Categories Navigation -->
+            <div class="sub-header__categories">
+                <div class="category-item">
+                    <div class="category-icon">
+                        <img src="img/iphone_16_pro.svg" alt="iPhone 16 Pro" width="32" height="32">
+                    </div>
+                    <span class="category-label">iPhone 16 Pro</span>
+                </div>
+
+                <div class="category-item">
+                    <div class="category-icon">
+                        <img src="img/iphone_16.svg" alt="iPhone 16" width="32" height="32">
+                    </div>
+                    <span class="category-label">iPhone 16</span>
+                </div>
+
+                <div class="category-item">
+                    <div class="category-icon">
+                        <img src="img/iphone_16e.svg" alt="iPhone 16e" width="32" height="32">
+                    </div>
+                    <span class="category-label">iPhone 16e</span>
+                </div>
+
+                <div class="category-item">
+                    <div class="category-icon">
+                        <img src="img/iphone_15.svg" alt="iPhone 15" width="32" height="32">
+                    </div>
+                    <span class="category-label">iPhone 15</span>
+                </div>
+
+                <div class="category-item">
+                    <div class="category-icon">
+                        <img src="img/iphone_compare.svg" alt="Compare" width="32" height="32">
+                    </div>
+                    <span class="category-label">Compare</span>
+                </div>
+
+                <div class="category-item">
+                    <div class="category-icon">
+                        <img src="img/airpods_light.svg" alt="AirPods" width="32" height="32">
+                    </div>
+                    <span class="category-label">AirPods</span>
+                </div>
+
+                <div class="category-item">
+                    <div class="category-icon">
+                        <img src="img/airtag_light.svg" alt="AirTag" width="32" height="32">
+                    </div>
+                    <span class="category-label">AirTag</span>
+                </div>
+
+                <div class="category-item">
+                    <div class="category-icon">
+                        <img src="img/accessories_light.svg" alt="Accessories" width="32" height="32">
+                    </div>
+                    <span class="category-label">Accessories</span>
+                </div>
+
+                <div class="category-item">
+                    <div class="category-icon">
+                        <img src="img/iphone_apple_card.svg" alt="Apple Card" width="32" height="32">
+                    </div>
+                    <span class="category-label">Apple Card</span>
+                </div>
+
+                <div class="category-item">
+                    <div class="category-icon">
+                        <img src="img/iphone_ios.svg" alt="iOS 26" width="32" height="32">
+                    </div>
+                    <span class="category-label">iOS 26</span>
+                    <span class="category-badge">Preview</span>
+                </div>
+
+                <div class="category-item">
+                    <div class="category-icon">
+                        <img src="img/shop_iphone.svg" alt="Shop iPhone" width="32" height="32">
+                    </div>
+                    <span class="category-label">Shop iPhone</span>
+                </div>
+            </div>
+
+            <!-- Promotional Offer -->
+        </div>
+        <div class="sub-header__promo">
+            <p class="promo-text">Get $160-$600 in credit toward iPhone 16 or iPhone 16 Pro when you trade in iPhone 12
+                or higher.*</p>
+            <a href="#" class="promo-link">Shop iPhone</a>
+        </div>
+    </div>
+
+
+
     <nav class="nav">
         <div class="container">
             <div class="nav__main">
@@ -212,11 +308,22 @@
         <div class="scrollmain">
             <div class="mainwrapper">
                 <main class="main">
-                    <section class="iphone-section">
-                        <div class="iphone-section__container">
-                            <div class="iphone-section__left">
-                                <div class="iphone-section__title">iPhone 16 Pro</div>
+                    <!-- Main iPhone Banner Section -->
+                    <section class="iphone-banner">
+                        <div class="container">
+                            <div class="iphone-banner__content">
+                                <div class="iphone-banner__header">
+                                    <h1 class="iphone-banner__title">iPhone</h1>
+                                    <p class="iphone-banner__tagline">Designed to be loved.</p>
+                                </div>
                             </div>
+                        </div>
+                        <div class="iphone-banner__video-container">
+                            <video class="iphone-banner__video" autoplay muted loop playsinline>
+                                <source src="img/video-banner-iphone.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="iphone-banner__overlay"></div>
                         </div>
                     </section>
                 </main>
