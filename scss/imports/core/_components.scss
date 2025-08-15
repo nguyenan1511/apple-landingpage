@@ -1115,6 +1115,11 @@
 // Sub-header Component
 .sub-header {
   padding-top: 90px;
+  transition: all 0.9s $cubic;
+  &.--bg-scroll {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
   .container {
     max-width: 1024px;
     margin: 0 auto;

@@ -1,6 +1,7 @@
 /////////////////////////// SCROLL ///////////////////////////////
 $(document).ready(function () {
   let header = $(".header"),
+    subHeader = $(".sub-header"),
     screen = {
       mobile: 734,
       tablet: 1024,
@@ -75,18 +76,23 @@ $(document).ready(function () {
   // HANDLE SCROLL HEADER BACKGROUND
   function handleHeaderScroll() {
     let scrollY = $(window).scrollTop();
+
     if (scrollY > header.height()) {
       header.addClass("--bg-scroll");
+      subHeader.addClass("--bg-scroll2");
     } else {
       header.removeClass("--bg-scroll");
+      subHeader.removeClass("--bg-scroll2");
     }
 
     locoScroll?.on("scroll", (args) => {
       let scrollY = args.scroll.y;
       if (scrollY > header.height()) {
         header.addClass("--bg-scroll");
+        subHeader.addClass("--bg-scroll");
       } else {
         header.removeClass("--bg-scroll");
+        subHeader.removeClass("--bg-scroll");
       }
     });
   }
