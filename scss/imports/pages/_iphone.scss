@@ -1,4 +1,11 @@
-// iPhone Video Banner Section
+// =============================================================================
+// iPhone Page Styles
+// =============================================================================
+
+// =============================================================================
+// 1. iPhone Video Banner Section
+// =============================================================================
+
 .iphone-banner {
   position: relative;
   overflow: hidden;
@@ -73,22 +80,22 @@
     text-align: right;
     max-width: 300px;
   }
-}
-
-@media (max-width: 768px) {
-  .iphone-banner {
+  @media (max-width: 734px) {
     &__video-container {
       height: 400px;
     }
 
     &__content {
-      padding: 30px 0 0 0;
+      padding: 20px 0 20px 0;
     }
 
     &__header {
       flex-direction: column;
-      gap: 20px;
-      text-align: center;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 0;
+      text-align: left;
     }
 
     &__title {
@@ -103,22 +110,256 @@
   }
 }
 
-@media (max-width: 480px) {
-  .iphone-banner {
-    &__video-container {
-      height: 300px;
+// =============================================================================
+// 2. iPhone Features Section
+// =============================================================================
+
+.iphone-features {
+  padding: 50px 0;
+  background: #fff;
+
+  .container {
+    max-width: 1024px;
+  }
+
+  &__navigation {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+
+  // Slider Container
+  .slider-iphone {
+    margin: 20px 0px;
+    position: relative;
+    z-index: 10;
+
+    .flickity-viewport {
+      overflow: initial;
+    }
+
+    .flickity-slider {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  // Feature Cards
+  .feature-card {
+    width: calc(100% / 3);
+    aspect-ratio: 405/740;
+    margin-right: 20px;
+    max-height: 740px;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+
+    &__header {
+      position: relative;
+      padding: 20px;
+      z-index: 2;
+      color: #fff;
+
+      &.--black {
+        color: #000;
+      }
+
+      .card-subtitle {
+        font-size: 17px;
+        line-height: 1.2353641176;
+        font-weight: 600;
+        letter-spacing: -0.022em;
+        margin-bottom: 6px;
+      }
+
+      .card-title {
+        font-size: 28px;
+        line-height: 1.1428571429;
+        font-weight: 600;
+        letter-spacing: 0.007em;
+      }
+    }
+
+    &:hover {
+      transform: scale(1.02);
     }
 
     &__content {
-      padding: 20px 0 0 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 1;
     }
 
-    &__title {
+    &__picture {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    &__image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.3s ease;
+    }
+
+    &__expand {
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+      width: 36px;
+      height: 36px;
+      background: #000;
+      border: none;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: #fff;
+      z-index: 3;
+
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+
+  // Navigation Arrows
+  .slider-iphone__prev,
+  .slider-iphone__next {
+    width: 36px;
+    height: 36px;
+    background: #fff;
+    border: 1px solid #d2d2d7;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #1d1d1f;
+
+    &:hover {
+      background: #f5f5f7;
+      border-color: #1d1d1f;
+    }
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  @media (max-width: 734px) {
+    .feature-card {
+      width: calc(100% / 2);
+      max-height: 500px;
+      min-width: 300px;
+
+      &__header {
+        padding: 20px;
+
+        .card-subtitle {
+          font-size: 16px;
+        }
+
+        .card-title {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}
+
+// =============================================================================
+// 3. Switch to iPhone Section
+// =============================================================================
+
+.switch-to-iphone {
+  margin: 0 auto;
+  padding-bottom: 100px;
+
+  &__content {
+    width: 100%;
+    height: 580px;
+    position: relative;
+  }
+  &__text {
+    position: relative;
+    z-index: 2;
+    padding-left: 80px;
+    height: 100%;
+    width: 480px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
+    &__subtitle {
       font-size: 32px;
+      line-height: 1.525;
+      font-weight: 600;
+      letter-spacing: 0.004em;
+      span {
+        color: #0071e3;
+      }
     }
-
-    &__tagline {
+    &__button {
       font-size: 18px;
+      letter-spacing: 0.004em;
+      color: #fff;
+      background: #0071e3;
+      padding: 10px 20px;
+      border-radius: 100px;
+      text-decoration: none;
+      font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Helvetica, Arial, sans-serif;
+    }
+  }
+  &__picture {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    border-radius: 20px;
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+  @media (max-width: 1023px) {
+    &__text {
+      padding-left: 0;
+      width: 100%;
+      justify-content: flex-start;
+      align-items: center;
+      padding-top: 40px;
+    }
+  }
+  @media (max-width: 734px) {
+    &__content {
+      height: 450px;
+    }
+    &__text {
+      padding-top: 20px;
+      padding-left: 10px;
+      padding-right: 10px;
+      &__subtitle {
+        font-size: 22px;
+      }
     }
   }
 }

@@ -477,11 +477,6 @@ $(document).ready(function () {
     });
   }
 
-  // DEBUG: Confirm LocomotiveScroll and GSAP/ScrollTrigger are loaded
-  console.log("LocomotiveScroll:", typeof LocomotiveScroll !== "undefined");
-  console.log("GSAP:", typeof gsap !== "undefined");
-  console.log("ScrollTrigger:", typeof ScrollTrigger !== "undefined");
-
   function initAnimate() {
     // Set initial opacity:0 for all fade-section elements (for safety)
     document.querySelectorAll(".fade-section").forEach(function (section) {
@@ -545,6 +540,39 @@ $(document).ready(function () {
     }
   }
 
+  // SLIDER IPHONE
+
+  // SLIDER NEWS
+  function sliderIphone() {
+    if ($(".slider-iphone").length) {
+      let $slider = $(".slider-iphone"),
+        $sliderParent = $slider.parent(),
+        opt = {
+          cellAlign: "left",
+          pageDots: false,
+          pauseAutoPlayOnHover: true,
+          dragThreshold: 10,
+          freeScroll: true,
+          prevNextButtons: false,
+          contain: true,
+          selectedAttraction: 0.02,
+          imagesLoaded: true,
+        };
+      $slider.flickity(opt);
+
+      // previous | next
+      let $prevBtn = $(".slider-iphone__prev", $sliderParent),
+        $nextBtn = $(".slider-iphone__next", $sliderParent);
+      $prevBtn.on("click", function () {
+        $slider.flickity("previous", true);
+      });
+      $nextBtn.on("click", function () {
+        $slider.flickity("next", true);
+      });
+      $slider.on("change.flickity", function (slide, index) {});
+    }
+  }
+
   // INIT
   function init() {
     $("body")
@@ -559,6 +587,7 @@ $(document).ready(function () {
         modalVideoInit();
         locoScroll.update();
         initAnimate();
+        sliderIphone();
       })
       .fail(function () {
         // console.log('all images loaded, at least one is broken');
