@@ -1116,7 +1116,6 @@
 .sub-header {
   padding-top: 90px;
   transition: all 0.9s $cubic;
-  opacity: 0;
   &.--bg-scroll {
     transform: scaleY(0);
     transform-origin: top;
