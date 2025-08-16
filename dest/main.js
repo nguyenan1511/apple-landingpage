@@ -2,6 +2,7 @@
 $(document).ready(function () {
   let header = $(".header"),
     subHeader = $(".sub-header"),
+    bannerVideo = $(".iphone-banner__video-container"),
     screen = {
       mobile: 734,
       tablet: 1024,
@@ -80,9 +81,11 @@ $(document).ready(function () {
     if (scrollY > header.height()) {
       header.addClass("--bg-scroll");
       subHeader.addClass("--bg-scroll2");
+      bannerVideo.addClass("--bg-scroll");
     } else {
       header.removeClass("--bg-scroll");
       subHeader.removeClass("--bg-scroll2");
+      bannerVideo.removeClass("--bg-scroll");
     }
 
     locoScroll?.on("scroll", (args) => {
@@ -90,9 +93,11 @@ $(document).ready(function () {
       if (scrollY > header.height()) {
         header.addClass("--bg-scroll");
         subHeader.addClass("--bg-scroll");
+        bannerVideo.addClass("--bg-scroll");
       } else {
         header.removeClass("--bg-scroll");
         subHeader.removeClass("--bg-scroll");
+        bannerVideo.removeClass("--bg-scroll");
       }
     });
   }
@@ -489,6 +494,12 @@ $(document).ready(function () {
       section.style.opacity = 0;
     });
 
+    // Set initial state for stagger items
+    document.querySelectorAll(".stagger-item").forEach(function (item) {
+      item.style.opacity = 0;
+      item.style.transform = "translateY(50px)";
+    });
+
     // Register ScrollTrigger
     if (window.gsap && window.ScrollTrigger) {
       gsap.registerPlugin(ScrollTrigger);
@@ -543,7 +554,73 @@ $(document).ready(function () {
           }
         );
       });
+
+      // STAGGER ANIMATION FOR CARDS
+      gsap.utils.toArray(".stagger-animate").forEach(function (container) {
+        const cards = container.querySelectorAll(".stagger-item");
+        if (cards.length > 0) {
+          // Set initial state
+          gsap.set(cards, {
+            opacity: 0,
+            y: 50,
+          });
+
+          gsap.to(cards, {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: "power2.out",
+            stagger: {
+              amount: 0.8,
+              from: "start",
+            },
+            scrollTrigger: {
+              trigger: container,
+              scroller: ".scrollmain",
+              start: "top 70%",
+              end: "bottom 30%",
+              toggleActions: "play none none reverse",
+              once: false,
+              markers: false,
+            },
+          });
+        }
+      });
     }
+  }
+
+  function animationForHeaderIphone() {
+    const headerIphone = document.querySelector(".sub-header .container");
+    const headerIphoneText = document.querySelector(
+      ".sub-header .sub-header__promo"
+    );
+    const timeLine = gsap.timeline();
+    if (!headerIphone) return;
+    gsap.set(headerIphone, {
+      opacity: 0,
+      x: 100,
+    });
+    gsap.set(headerIphoneText, {
+      scaleY: 0,
+      opacity: 0,
+    });
+    timeLine
+      .to(headerIphone, {
+        opacity: 1,
+        x: 0,
+        duration: 1,
+        ease: "power2.out",
+      })
+      .to(
+        headerIphoneText,
+        {
+          scaleY: 1,
+          opacity: 1,
+          duration: 1,
+          ease: "power2.out",
+        },
+        "-=0.7"
+      );
   }
 
   // SLIDER IPHONE
@@ -579,6 +656,192 @@ $(document).ready(function () {
     }
   }
 
+  // SLIDER Apple Best
+  function sliderAppleBest() {
+    if ($(".slider-apple-best").length) {
+      let $slider = $(".slider-apple-best"),
+        $sliderParent = $slider.parent(),
+        opt = {
+          cellAlign: "left",
+          pageDots: false,
+          pauseAutoPlayOnHover: true,
+          dragThreshold: 10,
+          freeScroll: true,
+          prevNextButtons: false,
+          contain: true,
+          selectedAttraction: 0.02,
+          imagesLoaded: true,
+        };
+      $slider.flickity(opt);
+
+      // previous | next
+      let $prevBtn = $(".apple-best__prev", $sliderParent),
+        $nextBtn = $(".apple-best__next", $sliderParent);
+      $prevBtn.on("click", function () {
+        $slider.flickity("previous", true);
+      });
+      $nextBtn.on("click", function () {
+        $slider.flickity("next", true);
+      });
+      $slider.on("change.flickity", function (slide, index) {});
+    }
+  }
+
+  // FEATURE COMPARISON NAVIGATION
+  function featureComparisonNav() {
+    const comparisonColumns = document.querySelector(".comparison-columns");
+    const prevBtn = document.querySelector(".feature-nav-btn--prev");
+    const nextBtn = document.querySelector(".feature-nav-btn--next");
+
+    const productSection = document.querySelector(".iphone-lineup__products");
+    const productPrevBtn = document.querySelector(".product-nav-btn--prev");
+    const productNextBtn = document.querySelector(".product-nav-btn--next");
+
+    if (!comparisonColumns || !prevBtn || !nextBtn) {
+      return;
+    }
+
+    // Previous button - scroll left
+    prevBtn.addEventListener("click", function () {
+      comparisonColumns.scrollTo({
+        left: -2000,
+        behavior: "smooth",
+      });
+    });
+
+    // Next button - scroll right
+    nextBtn.addEventListener("click", function () {
+      comparisonColumns.scrollTo({
+        left: 2000,
+        behavior: "smooth",
+      });
+    });
+
+    // Product Comparison Navigation
+    productPrevBtn.addEventListener("click", function () {
+      productSection.scrollTo({
+        left: -2000,
+        behavior: "smooth",
+      });
+    });
+
+    // Next button - scroll right
+    productNextBtn.addEventListener("click", function () {
+      productSection.scrollTo({
+        left: 2000,
+        behavior: "smooth",
+      });
+    });
+  }
+
+  // APPLE BEST MODAL
+  function appleBestModal() {
+    const modal = document.getElementById("modal-apple-best");
+    const cards = document.querySelectorAll(".apple-best__card");
+    const closeBtn = document.querySelector(".modal-apple-best__close");
+    const overlay = document.querySelector(".modal-apple-best__overlay");
+    const modalSubtitle = document.querySelector(".modal-apple-best__subtitle");
+    const modalTitle = document.querySelector(".modal-apple-best__title");
+    const modalBody = document.querySelector(".modal-apple-best__body p");
+    const modalCta = document.querySelector(".modal-apple-best__cta");
+
+    if (!modal || !cards.length) return;
+
+    // Card data mapping
+    const cardData = {
+      "apple-trade-in": {
+        subtitle: "Apple Trade In",
+        title: "Save with Apple Trade In.",
+        body: "Get $160-$600 in credit toward iPhone 16 or iPhone 16 Pro when you trade in iPhone 12 or higher. Trade in your eligible device and we'll give you instant credit toward your next purchase.",
+        cta: "Learn more about Apple Trade In",
+      },
+      "apple-card": {
+        subtitle: "Apple Card Monthly Installments",
+        title: "Pay over time, interest-free.",
+        body: "When you choose to check out at Apple with Apple Card Monthly Installments, you can pay for your new iPhone over time with 0% APR. No fees, no interest, just easy monthly payments.",
+        cta: "Learn more about Apple Card",
+      },
+      delivery: {
+        subtitle: "Flexible Delivery Options",
+        title: "Get flexible delivery and easy pickup.",
+        body: "Choose two-hour delivery from an Apple Store, free delivery, or easy pickup options. We'll get your new iPhone to you however works best for your schedule.",
+        cta: "Explore delivery options",
+      },
+      specialist: {
+        subtitle: "Guided Video Shopping",
+        title: "Shop live with a Specialist.",
+        body: "We can help you choose the product you need while guiding you through the online Apple Store. You won't appear on camera. Available 7 a.m. - 7 p.m. PT.",
+        cta: "Shop together with a Specialist",
+      },
+      "personal-setup": {
+        subtitle: "Personal Setup Session",
+        title: "Join an online Personal Setup session.",
+        body: "Talk one on one with a Specialist to set up your iPhone and discover new features. Get personalized help with everything from transferring your data to exploring iOS features.",
+        cta: "Schedule a Personal Setup",
+      },
+      "shopping-experience": {
+        subtitle: "Apple Store App",
+        title: "Explore a shopping experience designed around you.",
+        body: "Use the Apple Store app to get a more personal way to shop. Browse products, check availability, and get recommendations tailored to your preferences and needs.",
+        cta: "Download Apple Store app",
+      },
+    };
+
+    // Open modal when clicking on any card
+    cards.forEach((card, index) => {
+      card.addEventListener("click", function (e) {
+        // Don't open if clicking on the expand button
+        if (e.target.closest(".apple-best__card__expand")) {
+          return;
+        }
+
+        // Get card type based on index or content
+        const cardTypes = [
+          "apple-trade-in",
+          "apple-card",
+          "delivery",
+          "specialist",
+          "personal-setup",
+          "shopping-experience",
+        ];
+        const cardType = cardTypes[index] || "specialist";
+        const data = cardData[cardType];
+
+        // Update modal content
+        if (modalSubtitle) modalSubtitle.textContent = data.subtitle;
+        if (modalTitle) modalTitle.textContent = data.title;
+        if (modalBody) modalBody.textContent = data.body;
+        if (modalCta) modalCta.textContent = data.cta;
+
+        modal.classList.add("active");
+        document.body.style.overflow = "hidden";
+      });
+    });
+
+    // Close modal functions
+    function closeModal() {
+      modal.classList.remove("active");
+      document.body.style.overflow = "";
+    }
+
+    // Close on button click
+    if (closeBtn) {
+      closeBtn.addEventListener("click", closeModal);
+    }
+
+    // Close on overlay click
+    if (overlay) {
+      overlay.addEventListener("click", closeModal);
+    }
+
+    // Close on escape key
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && modal.classList.contains("active")) {
+        closeModal();
+      }
+    });
+  }
+
   // INIT
   function init() {
     $("body")
@@ -592,8 +855,12 @@ $(document).ready(function () {
         introATC();
         modalVideoInit();
         sliderIphone();
+        sliderAppleBest();
+        featureComparisonNav();
+        appleBestModal();
         locoScroll.update();
         initAnimate();
+        animationForHeaderIphone();
       })
       .fail(function () {
         // console.log('all images loaded, at least one is broken');
