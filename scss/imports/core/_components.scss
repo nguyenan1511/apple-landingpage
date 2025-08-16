@@ -1116,6 +1116,7 @@
 .sub-header {
   padding-top: 90px;
   transition: all 0.9s $cubic;
+  opacity: 0;
   &.--bg-scroll {
     transform: scaleY(0);
     transform-origin: top;
@@ -1142,6 +1143,7 @@
     padding: 6px 0;
     background: #f5f5f7;
     transform-origin: top;
+    opacity: 0;
 
     .promo-text {
       font-size: 12px;
