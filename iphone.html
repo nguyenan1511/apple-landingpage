@@ -1209,6 +1209,93 @@
                         </div>
                     </section>
 
+                    <!-- Significant others. -->
+                    <section class="significant-others">
+                        <div class="container stagger-animate">
+                            <h2 class="title-section stagger-item">Significant others.</h2>
+                            <div class="significant-others__content stagger-item">
+                                <div class="significant-others__accordion">
+                                    <div class="significant-others__accordion-item">
+                                        <button class="significant-others__accordion-header" aria-expanded="false">
+                                            <h3 class="significant-others__accordion-title">iPhone and Mac</h3>
+                                            <svg class="significant-others__accordion-icon" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none">
+                                                <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                        </button>
+                                        <div class="significant-others__accordion-content">
+                                            <p>Seamlessly work across your iPhone and Mac with Universal Control. Start
+                                                a document on your iPhone and continue editing on your Mac without
+                                                missing a beat. Use Handoff to transfer what you're doing from one
+                                                device to another. With iCloud, your photos, documents, and messages
+                                                stay in sync across all your devices. And with AirDrop, sharing files
+                                                between iPhone and Mac is faster than ever.</p>
+                                            <img src="img/mac.jpg" alt="iPhone and Mac integration"
+                                                class="img-accordion">
+                                        </div>
+                                    </div>
+
+                                    <div
+                                        class="significant-others__accordion-item significant-others__accordion-item--active">
+                                        <button class="significant-others__accordion-header" aria-expanded="true">
+                                            <h3 class="significant-others__accordion-title">iPhone and Apple Watch</h3>
+                                            <svg class="significant-others__accordion-icon" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none">
+                                                <path d="M18 15l-6-6-6 6" stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                        </button>
+                                        <div class="significant-others__accordion-content">
+                                            <p>Misplaced your iPhone? The latest Apple Watch models can show you its
+                                                approximate distance and direction.<sup>15</sup> To set up a group photo
+                                                on your iPhone, join the group and use Apple Watch as a viewfinder to
+                                                snap the shot. And when you take a call on your Apple Watch, just tap
+                                                your iPhone to continue the conversation there. With Family Setup, you
+                                                can pair an Apple Watch for a family member who doesn't have an iPhone.
+                                            </p>
+                                            <img src="img/watch.jpg" alt="iPhone and Apple Watch integration"
+                                                class="img-accordion">
+                                        </div>
+                                    </div>
+
+                                    <div class="significant-others__accordion-item">
+                                        <button class="significant-others__accordion-header" aria-expanded="false">
+                                            <h3 class="significant-others__accordion-title">iPhone and AirPods</h3>
+                                            <svg class="significant-others__accordion-icon" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none">
+                                                <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                        </button>
+                                        <div class="significant-others__accordion-content">
+                                            <p>Experience seamless audio switching between your iPhone and AirPods. When
+                                                you get a call, your AirPods automatically switch to your iPhone. And
+                                                with Spatial Audio, enjoy immersive sound that adapts to your head
+                                                movement. Use your iPhone to customize your AirPods settings, check
+                                                battery levels, and find them if they're lost. With Active Noise
+                                                Cancellation and Transparency mode, you can control how much of the
+                                                world you hear.</p>
+                                            <img src="img/airpods.jpg" alt="iPhone and AirPods integration"
+                                                class="img-accordion">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="significant-others__visual">
+                                    <img src="img/mac.jpg" alt="iPhone and Mac integration"
+                                        class="significant-others__visual-img" data-accordion="0">
+                                    <img src="img/watch.jpg" alt="iPhone and Apple Watch integration"
+                                        class="significant-others__visual-img significant-others__visual-img--active"
+                                        data-accordion="1">
+                                    <img src="img/airpods.jpg" alt="iPhone and AirPods integration"
+                                        class="significant-others__visual-img" data-accordion="2">
+                                    <!-- Debug buttons -->
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
 
                 </main>
                 <footer class="footer fade-section">
@@ -1591,6 +1678,71 @@
     <script src="js/libs/locomotive-scroll.min.js"></script> -->
     <script type="text/javascript" src="dest/jsmain.min.js"></script>
     <script type="text/javascript" src="dest/main.js"></script>
+    <script type="text/javascript" src="js/libs/accordion.js"></script>
+
+    <script>
+        // Backup accordion functionality with image switching
+        document.addEventListener('DOMContentLoaded', function () {
+            const accordionItems = document.querySelectorAll('.significant-others__accordion-item');
+            const visualImages = document.querySelectorAll('.significant-others__visual-img');
+
+            accordionItems.forEach((item, index) => {
+                const header = item.querySelector('.significant-others__accordion-header');
+
+                if (header) {
+                    header.addEventListener('click', function (e) {
+                        e.preventDefault();
+
+                        // Close all items
+                        accordionItems.forEach(otherItem => {
+                            otherItem.classList.remove('significant-others__accordion-item--active');
+                        });
+
+                        // Hide all images
+                        visualImages.forEach(img => {
+                            img.classList.remove('significant-others__visual-img--active');
+                        });
+
+                        // Open clicked item
+                        item.classList.add('significant-others__accordion-item--active');
+
+                        // Show corresponding image
+                        const targetImage = document.querySelector(`.significant-others__visual-img[data-accordion="${index}"]`);
+                        if (targetImage) {
+                            targetImage.classList.add('significant-others__visual-img--active');
+                        }
+                    });
+                }
+            });
+
+            // Auto-open second item
+            setTimeout(() => {
+                if (accordionItems.length > 1) {
+                    accordionItems[1].classList.add('significant-others__accordion-item--active');
+                    const targetImage = document.querySelector('.significant-others__visual-img[data-accordion="1"]');
+                    if (targetImage) {
+                        targetImage.classList.add('significant-others__visual-img--active');
+                    }
+                }
+            }, 500);
+        });
+
+        // Debug function for testing image switching
+        window.switchImage = function (index) {
+            const visualImages = document.querySelectorAll('.significant-others__visual-img');
+
+            // Hide all images
+            visualImages.forEach(img => {
+                img.classList.remove('significant-others__visual-img--active');
+            });
+
+            // Show target image
+            const targetImage = document.querySelector(`.significant-others__visual-img[data-accordion="${index}"]`);
+            if (targetImage) {
+                targetImage.classList.add('significant-others__visual-img--active');
+            }
+        };
+    </script>
 
 </body>
 
