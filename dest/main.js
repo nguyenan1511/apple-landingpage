@@ -697,7 +697,23 @@ $(document).ready(function () {
     const productPrevBtn = document.querySelector(".product-nav-btn--prev");
     const productNextBtn = document.querySelector(".product-nav-btn--next");
 
-    if (!comparisonColumns || !prevBtn || !nextBtn) {
+    const iphoneEssentials = document.querySelector(
+      ".iphone-essentials-container"
+    );
+    const iphoneEssentialsPrevBtn = document.querySelector(
+      ".iphone-essentials__prev"
+    );
+    const iphoneEssentialsNextBtn = document.querySelector(
+      ".iphone-essentials__next"
+    );
+    if (
+      !comparisonColumns ||
+      !prevBtn ||
+      !nextBtn ||
+      !iphoneEssentials ||
+      !iphoneEssentialsPrevBtn ||
+      !iphoneEssentialsNextBtn
+    ) {
       return;
     }
 
@@ -729,6 +745,19 @@ $(document).ready(function () {
     productNextBtn.addEventListener("click", function () {
       productSection.scrollTo({
         left: 2000,
+        behavior: "smooth",
+      });
+    });
+    // iPhone Essentials Navigation
+    iphoneEssentialsPrevBtn.addEventListener("click", function () {
+      iphoneEssentials.scrollTo({
+        left: -1000,
+        behavior: "smooth",
+      });
+    });
+    iphoneEssentialsNextBtn.addEventListener("click", function () {
+      iphoneEssentials.scrollTo({
+        left: 1000,
         behavior: "smooth",
       });
     });

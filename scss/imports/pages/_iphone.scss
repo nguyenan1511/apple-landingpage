@@ -923,6 +923,11 @@
       font-weight: 600;
       color: #0071e3;
     }
+    @media (max-width: 734px) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
   }
   &__cards {
     position: relative;
@@ -955,7 +960,10 @@
     margin-right: 20px;
     width: calc(100% / 3);
     @media (max-width: 734px) {
-      width: calc(100% / 2 - 10px);
+      width: calc(100% / 2 - 20px);
+    }
+    @media (max-width: 480px) {
+      width: calc(100% - 60px);
     }
   }
 
@@ -1062,5 +1070,160 @@
     &:hover svg {
       transform: scale(1.1);
     }
+  }
+}
+
+// =============================================================================
+// iPhone Essentials Section
+// =============================================================================
+
+.iphone-essentials {
+  padding: 80px 0;
+
+  &__header {
+    max-width: 1024px !important;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 48px;
+    @media (max-width: 734px) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+  }
+
+  &__card-text {
+    padding: 32px;
+  }
+  &__title {
+    font-size: 48px;
+    font-weight: 600;
+    color: #1d1d1f;
+    margin: 0;
+    line-height: 1.1;
+    text-align: center;
+    @media (max-width: 734px) {
+      font-size: 32px;
+      text-align: left;
+    }
+  }
+
+  &__link {
+    text-align: center;
+    font-size: 17px;
+    font-weight: 400;
+    color: #0066cc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  &__content {
+    max-width: 1024px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    overflow-y: hidden;
+    @media (max-width: 734px) {
+      width: 600px;
+    }
+  }
+  .container {
+    @media (max-width: 734px) {
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+  }
+  &__navigation {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+    margin-top: 32px;
+    display: none;
+    @media (max-width: 734px) {
+      display: flex;
+    }
+  }
+  &__prev,
+  &__next {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border: 1px solid #d2d2d7;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    &:hover {
+      background: #f5f5f7;
+      border-color: #1d1d1f;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    svg {
+      width: 20px;
+      height: 20px;
+      color: #1d1d1f;
+      transition: transform 0.3s ease;
+    }
+    &:hover svg {
+      transform: scale(1.1);
+    }
+  }
+
+  &__card {
+    background: #f5f5f7;
+    border-radius: 18px;
+    width: 100%;
+    overflow: hidden;
+    aspect-ratio: 1/1;
+    @media (max-width: 734px) {
+      aspect-ratio: 295/480;
+    }
+  }
+
+  &__card-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 600;
+    color: #1d1d1f;
+    margin: 0 0 12px 0;
+    line-height: 1.2;
+  }
+
+  &__card-description {
+    text-align: center;
+    font-size: 17px;
+    font-weight: 400;
+    color: #1d1d1f;
+    line-height: 1.4;
+    margin: 0 0 20px 0;
+  }
+
+  &__card-link {
+    font-size: 17px;
+    text-align: center;
+    font-weight: 400;
+    color: #0066cc;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 32px;
+    width: 100%;
+  }
+  &__card-visuals {
+    width: 100%;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  @media (max-width: 734px) {
+    padding: 40px 0;
   }
 }
