@@ -1125,6 +1125,8 @@
   .container {
     max-width: 1024px;
     margin: 0 auto;
+    opacity: 0;
+    transform: translateX(100px);
   }
 
   &__categories {
@@ -1145,7 +1147,7 @@
     background: #f5f5f7;
     transform-origin: top;
     opacity: 0;
-
+    transform: scaleY(0);
     .promo-text {
       font-size: 12px;
       color: #1d1d1f;
@@ -1265,4 +1267,8 @@
     font-size: 28px;
     margin-bottom: 20px;
   }
+}
+
+.fade-section {
+  opacity: 0;
 }

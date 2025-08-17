@@ -392,13 +392,13 @@ $(document).ready(function () {
   });
 
   // INTRO
-  let tlIntro = new gsap.timeline({ delay: 0.5 });
+  let tlIntro = new gsap.timeline({ delay: 0.2 });
   function introATC() {
     let intro = $(".introloading"),
       logoIntro = $(".introloading .introloading__logo");
     tlIntro
       .to(logoIntro, 0.8, { autoAlpha: 1 })
-      .to(logoIntro, 0.5, { autoAlpha: 0, delay: 1.5 })
+      .to(logoIntro, 0.5, { autoAlpha: 0, delay: 1 })
       .to(intro, 0.2, { autoAlpha: 0 });
     tlIntro.play();
   }
@@ -596,14 +596,14 @@ $(document).ready(function () {
     );
     const timeLine = gsap.timeline();
     if (!headerIphone) return;
-    gsap.set(headerIphone, {
-      opacity: 0,
-      x: 100,
-    });
-    gsap.set(headerIphoneText, {
-      scaleY: 0,
-      opacity: 0,
-    });
+    // gsap.set(headerIphone, {
+    //   opacity: 0,
+    //   x: 100,
+    // });
+    // gsap.set(headerIphoneText, {
+    //   scaleY: 0,
+    //   opacity: 0,
+    // });
     timeLine
       .to(headerIphone, {
         opacity: 1,
@@ -819,11 +819,6 @@ $(document).ready(function () {
     // Open modal when clicking on any card
     cards.forEach((card, index) => {
       card.addEventListener("click", function (e) {
-        // Don't open if clicking on the expand button
-        if (e.target.closest(".apple-best__card__expand")) {
-          return;
-        }
-
         // Get card type based on index or content
         const cardTypes = [
           "apple-trade-in",
@@ -888,8 +883,11 @@ $(document).ready(function () {
         featureComparisonNav();
         appleBestModal();
         locoScroll.update();
-        initAnimate();
-        animationForHeaderIphone();
+
+        setTimeout(function () {
+          initAnimate();
+          animationForHeaderIphone();
+        }, 3000);
       })
       .fail(function () {
         // console.log('all images loaded, at least one is broken');
